@@ -1,0 +1,102 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Clock Hour Management System Provider
+  description: A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: Swagger API Team
+    email: foo@example.com
+    url: http://madskristensen.net
+  license:
+    name: MIT
+    url: http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT
+host: ch.psesd.org
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /classes:
+    get:
+      summary: Get a list of classes
+      responses:
+        200: {$ref: '#/responses/ok'}
+        401: {$ref: '#/responses/unauthenticated'}
+        403: {$ref: '#/responses/forbidden'}
+        500: {$ref: '#/responses/generalError'}
+    post:
+      summary: Create a new class
+      responses:
+        200: {$ref: '#/responses/ok'}
+        400: {$ref: '#/responses/illegalInput'}
+        401: {$ref: '#/responses/unauthenticated'}
+        403: {$ref: '#/responses/forbidden'}
+        500: {$ref: '#/responses/generalError'}
+  /classes/{id}:
+    parameters:
+      - {$ref: '#/parameters/id'}
+    get:
+      summary: Get class by its id
+      responses:
+        200: {$ref: '#/responses/ok'}
+        401: {$ref: '#/responses/unauthenticated'}
+        403: {$ref: '#/responses/forbidden'}
+        404: {$ref: '#/responses/notFound'}
+        500: {$ref: '#/responses/generalError'}
+    head:
+      summary: Check if class exists based on its id
+      responses:
+        200: {$ref: '#/responses/ok'}
+        404: {$ref: '#/responses/notFound'}
+    put:
+      summary: Update a class record based on its id
+      responses:
+        200: {$ref: '#/responses/ok'}
+        400: {$ref: '#/responses/illegalInput'}
+        401: {$ref: '#/responses/unauthenticated'}
+        403: {$ref: '#/responses/forbidden'}
+        404: {$ref: '#/responses/notFound'}
+        500: {$ref: '#/responses/generalError'}
+    patch:
+      summary: Update part of a class record based on its id
+      responses:
+        200: {$ref: '#/responses/ok'}
+        400: {$ref: '#/responses/illegalInput'}
+        401: {$ref: '#/responses/unauthenticated'}
+        403: {$ref: '#/responses/forbidden'}
+        404: {$ref: '#/responses/notFound'}
+        500: {$ref: '#/responses/generalError'}
+  /classes/{id}/evaluations:
+    get:
+      summary: Get a aggregated set of evaluation results
+      responses:
+        200: {$ref: '#/responses/ok'}
+        401: {$ref: '#/responses/unauthenticated'}
+        403: {$ref: '#/responses/forbidden'}
+        500: {$ref: '#/responses/generalError'}
+    post:
+      summary: Post a 
+parameters:
+  id:
+    name: id
+    type: string
+    in: path
+    required: true
+    description: Unique identifier
+responses:
+  ok:
+    description: Success
+  illegalInput:
+    description: Some parameter was incorrect
+  unauthenticated:
+    description: Action only allowed for authenticated users
+  forbidden:
+    description: Action not allowed for this user
+  notFound:
+    description: Requested item(s) not found
+  generalError:
+    description: Any internal server error

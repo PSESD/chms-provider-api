@@ -1,20 +1,20 @@
-swagger: "2.0"
+swagger: '2.0'
 info:
   version: 1.0.0
   title: Clock Hour Management System Provider
-  description: A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification
-  termsOfService: http://swagger.io/terms/
+  description: API for the Clock Hour Management System Provider
   contact:
-    name: Swagger API Team
-    email: foo@example.com
-    url: http://madskristensen.net
+    name: Jacob Morrison
+    email: jmorrison@psesd.org
+    url: 'http://psesd.org'
   license:
     name: MIT
-    url: http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT
+    url: 'http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT'
 host: ch.psesd.org
 basePath: /api/v1
 schemes:
   - http
+  - https
 consumes:
   - application/json
 produces:
@@ -24,63 +24,924 @@ paths:
     get:
       summary: Get a list of classes
       responses:
-        200: {$ref: '#/responses/ok'}
-        401: {$ref: '#/responses/unauthenticated'}
-        403: {$ref: '#/responses/forbidden'}
-        500: {$ref: '#/responses/generalError'}
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/ClassList'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '500':
+          $ref: '#/responses/generalError'
     post:
       summary: Create a new class
       responses:
-        200: {$ref: '#/responses/ok'}
-        400: {$ref: '#/responses/illegalInput'}
-        401: {$ref: '#/responses/unauthenticated'}
-        403: {$ref: '#/responses/forbidden'}
-        500: {$ref: '#/responses/generalError'}
-  /classes/{id}:
+        '200':
+          $ref: '#/responses/ok'
+        '400':
+          $ref: '#/responses/illegalInput'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '500':
+          $ref: '#/responses/generalError'
+  '/classes/{id}':
     parameters:
-      - {$ref: '#/parameters/id'}
+      - $ref: '#/parameters/id'
     get:
-      summary: Get class by its id
+      summary: Get class based on its id
       responses:
-        200: {$ref: '#/responses/ok'}
-        401: {$ref: '#/responses/unauthenticated'}
-        403: {$ref: '#/responses/forbidden'}
-        404: {$ref: '#/responses/notFound'}
-        500: {$ref: '#/responses/generalError'}
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/ClassObject'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
     head:
       summary: Check if class exists based on its id
       responses:
-        200: {$ref: '#/responses/ok'}
-        404: {$ref: '#/responses/notFound'}
-    put:
-      summary: Update a class record based on its id
-      responses:
-        200: {$ref: '#/responses/ok'}
-        400: {$ref: '#/responses/illegalInput'}
-        401: {$ref: '#/responses/unauthenticated'}
-        403: {$ref: '#/responses/forbidden'}
-        404: {$ref: '#/responses/notFound'}
-        500: {$ref: '#/responses/generalError'}
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
     patch:
-      summary: Update part of a class record based on its id
+      summary: Update a class based on its ID
       responses:
-        200: {$ref: '#/responses/ok'}
-        400: {$ref: '#/responses/illegalInput'}
-        401: {$ref: '#/responses/unauthenticated'}
-        403: {$ref: '#/responses/forbidden'}
-        404: {$ref: '#/responses/notFound'}
-        500: {$ref: '#/responses/generalError'}
-  /classes/{id}/evaluations:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    delete:
+      summary: Delete a class based on its id
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  '/classes/{classId}/evaluationResponses':
+    parameters:
+      - $ref: '#/parameters/classId'
     get:
-      summary: Get a aggregated set of evaluation results
+      summary: Get an aggregated summary of evaluation responses for a class
       responses:
-        200: {$ref: '#/responses/ok'}
-        401: {$ref: '#/responses/unauthenticated'}
-        403: {$ref: '#/responses/forbidden'}
-        500: {$ref: '#/responses/generalError'}
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/EvaluationSummary'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
     post:
-      summary: Post a 
+      summary: Post an evaluation response for a class based on its id
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  '/classes/{classId}/registrations':
+    parameters:
+      - $ref: '#/parameters/classId'
+    get:
+      summary: Get a list of all registrations based on the class id
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/RegistrationList'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /classes/{classId}/meetings:
+    parameters:
+      - $ref: '#/parameters/classId'
+    get:
+      summary: Get a list of all meetings for a given class
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/MeetingList'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    post:
+      summary: Create a new meeting for a class
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /classes/{classId}/meetings/{id}:
+    parameters:
+      - $ref: '#/parameters/classId'
+      - $ref: '#/parameters/id'
+    get:
+      summary: Get a meeting based on its id
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/MeetingObject'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    delete:
+      summary: Delete a meeting based on its id for a given class (classId)
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /classes/{classId}/instructors:
+    parameters:
+      - $ref: '#/parameters/classId'
+    get:
+      summary: Get a list of all instructors for a given class
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/PersonList'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    put:
+      summary: Add a new instructor a class
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /classes/{classId}/instructors/{id}:
+    parameters:
+      - $ref: '#/parameters/classId'
+      - $ref: '#/parameters/id'
+    head:
+      summary: Check if a person (based on id) is an instructor for a given class
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    delete:
+      summary: Disassociate an instructor based on their person id with a given class (classId)
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /classes/{classId}/topics:
+    parameters:
+      - $ref: '#/parameters/classId'
+    get:
+      summary: Get a list of all topics for a given class
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/TopicList'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    put:
+      summary: Add a new topic to a class
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /classes/{classId}/topics/{id}:
+    parameters:
+      - $ref: '#/parameters/classId'
+      - $ref: '#/parameters/id'
+    head:
+      summary: Check if a topic (id) is assigned to a given class (classId)
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    delete:
+      summary: Disassociate a topic based on its id for a given class (classId)
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /classes/{classId}/objectives:
+    parameters:
+      - $ref: '#/parameters/classId'
+    get:
+      summary: Get a list of all objectives for a given class
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/ObjectiveList'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    put:
+      summary: Add a new objective to a class
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /classes/{classId}/objectives/{id}:
+    parameters:
+      - $ref: '#/parameters/classId'
+      - $ref: '#/parameters/id'
+    head:
+      summary: Check if an objective (id) is assigned to a given class (classId)
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    delete:
+      summary: Disassociate an objective based on its id for a given class (classId)
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /locations:
+    get:
+      summary: Get a list of all locations
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/LocationList'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    post:
+      summary: Create a new location
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /locations/{id}:
+    parameters:
+      - $ref: '#/parameters/id'
+    get:
+      summary: Get a location object based on its id
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/LocationObject'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    head:
+      summary: Check if a location exists based on its id
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    delete:
+      summary: Delete a location based on its id
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    patch:
+      summary: Update a location based on its id
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /topics:
+    get:
+      summary: Get a list of all topics
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/TopicList'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    post:
+      summary: Create a new topic
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /topics/{id}:
+    parameters:
+      - $ref: '#/parameters/id'
+    get:
+      summary: Get a topic object based on its id
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/TopicObject'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    head:
+      summary: Check if a topic exists based on its id
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    delete:
+      summary: Delete a topic based on its id
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    patch:
+      summary: Update a topic based on its id
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /objectives:
+    get:
+      summary: Get a list of all objectives
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/ObjectiveList'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    post:
+      summary: Create a new objective
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /objectives/{id}:
+    parameters:
+      - $ref: '#/parameters/id'
+    get:
+      summary: Get an objective object based on its id
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/LocationObject'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    head:
+      summary: Check if an objective exists based on its id
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    delete:
+      summary: Delete an objective based on its id
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    patch:
+      summary: Update an objective based on its id
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+  /evaluations:
+    get:
+      summary: Get a list of all the defined evaluation question sets available
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/EvaluationList'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '500':
+          $ref: '#/responses/generalError'
+    post:
+      summary: Create a new evaluation question set
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '500':
+          $ref: '#/responses/generalError'
+  '/evaluations/{classId}':
+    parameters:
+      - $ref: '#/parameters/classId'
+    get:
+      summary: Get an evaluation question set by its id
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/EvaluationObject'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '500':
+          $ref: '#/responses/generalError'
+    head:
+      summary: Check if an evaluation question set exists based on its id
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    patch:
+      summary: Update an evaluation question set based on its ID
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+    delete:
+      summary: Delete an evaluation question set based on its id
+      responses:
+        '200':
+          $ref: '#/responses/ok'
+        '401':
+          $ref: '#/responses/unauthenticated'
+        '403':
+          $ref: '#/responses/forbidden'
+        '404':
+          $ref: '#/responses/notFound'
+        '500':
+          $ref: '#/responses/generalError'
+definitions:
+  ClassList:
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      items:
+        description: A list of classes
+        type: array
+        items:
+          $ref: '#/definitions/ClassObject'
+  ClassApplication:
+    type: object
+    properties:
+      participant_count:
+        description: Estimated number of participants
+        type: integer
+      college_credits:
+        description: Is this class available for college credits?
+        type: boolean
+      college:
+        description: College offering credits (if applicable)
+        type: string
+      comments:
+        description: Additional information / comments
+        type: string
+  ClassObject:
+    type: object
+    required:
+      - title
+      - short_title
+      - description
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      id:
+        description: The unique identifier for this record
+        type: string
+      title:
+        description: Long title for the class
+        type: string
+      short_title:
+        description: Short title for the class
+        type: string
+      description:
+        description: Long description for the class
+        type: string
+      start_date:
+        description: Date of the first meeting
+        type: string
+        format: date
+      end_date:
+        description: Date of the last meeting
+        type: string
+        format: date
+      instructional_hours:
+        description: Number of instructional hours
+        type: integer
+      application:
+        description: Application for clock hour approval
+        $ref: '#/definitions/ClassApplication'
+      instructors:
+        $ref: '#/definitions/PersonList'
+        description: List of instructors (only if requested)
+      meetings:
+        $ref: '#/definitions/MeetingList'
+        description: List of meetings (only if requested)
+      topics:
+        $ref: '#/definitions/TopicList'
+        description: List of topics (only if requested)
+      objectives:
+        $ref: '#/definitions/ObjectiveList'
+        description: List of objectives (only if requested)
+  RegistrationList:
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      items:
+        description: A list of registrations
+        type: array
+        items:
+          $ref: '#/definitions/RegistrationObject'
+  RegistrationObject:
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      id:
+        description: The unique identifier for this record
+        type: string
+  EvaluationSummary:
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+  EvaluationObject:
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      id:
+        description: The unique identifier for this record
+        type: string
+  EvaluationList:
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      items:
+        description: A list of evaluation question sets
+        type: array
+        items:
+          $ref: '#/definitions/EvaluationObject'
+  LocationObject:
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      id:
+        description: The unique identifier for this record
+        type: string
+  LocationList:
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      items:
+        description: A list of meetings
+        type: array
+        items:
+          $ref: '#/definitions/LocationObject'
+  MeetingObject:
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      id:
+        description: The unique identifier for this record
+        type: string
+  MeetingList:
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      items:
+        description: A list of meetings
+        type: array
+        items:
+          $ref: '#/definitions/MeetingObject'
+  TopicObject:
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      id:
+        description: The unique identifier for this record
+        type: string
+  TopicList:
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      items:
+        description: A list of topics
+        type: array
+        items:
+          $ref: '#/definitions/TopicObject'
+  ObjectiveObject:
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      id:
+        description: The unique identifier for this record
+        type: string
+  PersonList:
+    type: object
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      items:
+        description: A list of people
+        type: array
+        items:
+          $ref: 'https://raw.githubusercontent.com/PSESD/chms-portal-api/master/swagger.yaml#/definitions/PersonObject'
+  ObjectiveList:
+    properties:
+      etag:
+        description: Etag of this resource
+        type: string
+      items:
+        description: A list of objectives
+        type: array
+        items:
+          $ref: '#/definitions/ObjectiveObject'
 parameters:
+  classId:
+    name: classId
+    type: string
+    in: path
+    required: true
+    description: Unique identifier for the class
   id:
     name: id
     type: string

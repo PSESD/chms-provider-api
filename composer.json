@@ -1,0 +1,47 @@
+{
+    "name": "psesd/chms-provider-api",
+    "description": "Clock Hour Management System provider API",
+    "license": "MIT",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Jacob Morrison",
+            "email": "jmorrison@psesd.org"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "psesd/chms-common": "dev-master",
+        "canis/eloquent-behaviors": "dev-master",
+
+        "laravel/lumen-framework": "5.2.*",
+        "vlucas/phpdotenv": "~2.2",
+        "rollbar/rollbar": "~0.15.0",
+        "filp/whoops": "~2.0",
+        "predis/predis": "^1.0",
+        "illuminate/redis": "^5.2",
+        "graham-campbell/throttle": "^5.1",
+        "nesbot/carbon": "^1.21"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0",
+        "symfony/var-dumper": "~3.0",
+        "mockery/mockery": "^0.9.4",
+        "appzcoder/lumen-routes-list": "^1.0",
+        "jom/phpunit-report-search-replace": "dev-master",
+        "fzaninotto/faker": "^1.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "CHMS\\Provider\\": "app/"
+        },
+        "classmap": [
+            "database/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CHMSTests\\Provider\\": "tests/"
+        }
+    }
+}

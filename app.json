@@ -1,0 +1,7 @@
+{
+  "name": "Clock Hour Management System - Provider API",
+  "description": "Clock Hour Management System - Provider API",
+  "repository": "https://github.com/psesd/chms-hub-api",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["clock hours"]
+}

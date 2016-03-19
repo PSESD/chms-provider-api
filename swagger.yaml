@@ -829,10 +829,29 @@ definitions:
       id:
         description: The unique identifier for this record
         type: string
+      person:
+        $ref: 'https://raw.githubusercontent.com/PSESD/chms-portal-api/master/swagger.yaml#/definitions/PersonObject'
+      class:
+        $ref: '#/definitions/ClassObject'
   EvaluationSummary:
     properties:
       etag:
         description: Etag of this resource
+        type: string
+  QuestionObject:
+    properties:
+      id:
+        description: The unique identifier for this record
+        type: string
+      question:
+        description: The evaluation question
+        type: string
+      input_type:
+        description: Input type
+        enum:
+          - text
+          - select
+          - range
         type: string
   EvaluationObject:
     properties:
@@ -878,6 +897,19 @@ definitions:
       id:
         description: The unique identifier for this record
         type: string
+      name:
+        description: Topic name
+        type: string
+      start_time:
+        description: Start date and time
+        type: string
+        format: datetime
+      end_time:
+        description: End date and time
+        type: string
+        format: datetime
+      location:
+        $ref: '#/definitions/LocationObject'
   MeetingList:
     properties:
       etag:
@@ -895,6 +927,9 @@ definitions:
         type: string
       id:
         description: The unique identifier for this record
+        type: string
+      name:
+        description: Topic name
         type: string
   TopicList:
     properties:

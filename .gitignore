@@ -1,0 +1,10 @@
+/vendor
+.env.local
+*.log
+docker-compose.yml
+phpunit.xml
+build-local
+.bash*
+.tags
+*.sqlite
+clover.xml

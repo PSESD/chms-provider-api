@@ -22,4 +22,10 @@ class User extends BaseModel
     {
         return [];
     }
+
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_users');
+    }
 }

@@ -3,9 +3,11 @@ namespace CHMSTests\Provider\Http\Controllers\Records;
 
 use CHMS\Provider\Http\Controllers\Records\ObjectTrait as BaseObjectTrait;
 use CHMS\Provider\Repositories\Record\Contract;
+use CHMSTests\Provider\ApplicationTestTrait;
 
 trait ObjectTrait
 {
+    use ApplicationTestTrait;
     /**
      * @inheritdoc
      */

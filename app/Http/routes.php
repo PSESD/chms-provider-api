@@ -55,6 +55,7 @@ $app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => $m
      * Path: /classes/{classId}/instructors
      */
     $app->addRoute('GET', '/classes/{classId}/instructors', ['as' => 'getClassInstructors', 'uses' => 'Classes\InstructorController@get']);
+    $app->addRoute('POST', '/classes/{classId}/instructors', ['as' => 'postClassInstructors', 'uses' => 'Classes\InstructorController@post']);
 
     /**
      * Path: /classes/{classId}/topics
@@ -144,9 +145,7 @@ $app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => $p
     /**
      * Path: /classes/{classId}/records
      */
-    $app->addRoute('GET', '/classes/{classId}/records', ['as' => 'getClockHourRecords', 'uses' => 'Classes\RecordController@get']);
-    $app->addRoute('POST', '/classes/{classId}/records', ['as' => 'postClockHourRecord', 'uses' => 'Classes\RecordController@post']);
-
+    $app->addRoute('GET', '/classes/{classId}/records', ['as' => 'getClassClockHourRecords', 'uses' => 'Classes\RecordController@get']);
     /**
      * Path: /locations
      */
@@ -193,7 +192,7 @@ $app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => $p
     /**
      * Path: /records
      */
-    $app->addRoute('POST', '/records', ['as' => 'postRecord', 'uses' => 'Records\IndexController@post']);
+    $app->addRoute('POST', '/records', ['as' => 'postRecords', 'uses' => 'Records\IndexController@post']);
 
     /**
      * Path: /records/{recordId}

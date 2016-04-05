@@ -1,9 +1,11 @@
 <?php
 namespace CHMSTests\Provider\Http\Controllers\Providers;
 use CHMS\Provider\Repositories\Provider\Contract;
+use CHMSTests\Provider\ApplicationTestTrait;
 
 trait ObjectTrait
 {
+    use ApplicationTestTrait;
     /**
      * @inheritdoc
      */

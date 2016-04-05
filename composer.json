@@ -1,6 +1,6 @@
 {
     "name": "psesd/chms-provider-api",
-    "description": "Clock Hour Management System provider API",
+    "description": "Clock Hour Management System provider hub API",
     "license": "MIT",
     "type": "project",
     "authors": [

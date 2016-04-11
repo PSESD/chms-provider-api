@@ -13,6 +13,7 @@ class Location extends BaseModel
      * @inheritdoc
      */
     protected $fillable = [
+        'provider_id',
         'name',
         'address_1',
         'address_2',

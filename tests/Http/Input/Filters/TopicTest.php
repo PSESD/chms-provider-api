@@ -4,7 +4,7 @@ namespace CHMSTests\Provider\Http\Input\Filters;
 use CHMS\Provider\Http\Input\Filters\Topic as Filter;
 use CHMS\Provider\Models\Topic as Model;
 use CHMS\Common\Exceptions\InvalidInputException;
-use CHMSTests\Provider\Stubs\GenericModel;
+use CHMSTests\Common\Stubs\GenericModel;
 
 class TopicTest extends FilterTest
 {
@@ -22,12 +22,12 @@ class TopicTest extends FilterTest
     {
         $faker = \Faker\Factory::create();
         $base = factory(GenericModel::class, 'Topic')->make()->toArray();
-        // $tests[] = [
-        //     'roles' => ['provider_administrator'],
-        //     'input' => array_merge($base, []),
-        //     'scenario' => 'create', 
-        //     'expectException' => false
-        // ];
+        $tests[] = [
+            'roles' => ['provider_administrator'],
+            'input' => array_merge($base, []),
+            'scenario' => 'create', 
+            'expectException' => false
+        ];
         return $tests;
     }
 }

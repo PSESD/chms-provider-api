@@ -10,12 +10,15 @@ use CHMS\Provider\Models\Location as LocationModel;
 use CHMS\Provider\Models\Organization as OrganizationModel;
 use CHMS\Provider\Models\Role as RoleModel;
 use CHMS\Provider\Models\RoleUser as RoleUserModel;
+use CHMS\Provider\Models\Provider as ProviderModel;
 use CHMS\Provider\Models\Topic as TopicModel;
 use CHMS\Provider\Models\User as UserModel;
 
 
 return [
     'roles' => [
+        'super_administrator' => ['name' => 'Super Administrator', 'context' => 'hub', 'level' => 10],
+        'hub_administrator' => ['name' => 'Hub Administrator', 'context' => 'hub', 'level' => 11],
         'provider_administrator' => ['name' => 'Provider Administrator', 'context' => 'provider', 'level' => 100],
         'provider_registrar' => ['name' => 'Provider Registrar', 'context' => 'provider', 'level' => 110],
         'provider_reviewer' => ['name' => 'Provider Reviewer', 'context' => 'provider', 'level' => 120],
@@ -72,7 +75,7 @@ return [
         ]
     ],
     'modelRules' => [
-        ClassMeeting::class => [
+        ClassMeetingModel::class => [
             'access' => [
                 'role-provider-privileged' => ['read', 'set'], 
                 'role-class-privileged' => ['read', 'set'], 
@@ -81,7 +84,7 @@ return [
                 '*' => true
             ]
         ],
-        ClassRecord::class => [
+        ClassRecordModel::class => [
             'access' => [
                 'role-provider-privileged' => ['read', 'set'], 
                 'role-class-privileged' => ['read', 'set'], 
@@ -90,7 +93,7 @@ return [
                 '*' => true
             ]
         ],
-        ClassTopic::class => [
+        ClassTopicModel::class => [
             'access' => [
                 'role-provider-privileged' => ['read', 'set'], 
                 'role-class-privileged' => ['read', 'set'], 
@@ -99,7 +102,7 @@ return [
                 '*' => true
             ]
         ],
-        ClockHourRecord::class => [
+        ClockHourRecordModel::class => [
             'access' => [
                 'role-provider-privileged' => ['read', 'set'], 
                 'role-class-privileged' => ['read', 'set'], 
@@ -108,7 +111,7 @@ return [
                 '*' => true
             ]
         ],
-        Evaluation::class => [
+        EvaluationModel::class => [
             'access' => [
                 'everyone' => ['read'],
                 'role-provider-privileged' => ['read', 'set'],
@@ -117,7 +120,7 @@ return [
                 '*' => true
             ]
         ],
-        EvaluationQuestion::class => [
+        EvaluationQuestionModel::class => [
             'access' => [
                 'everyone' => ['read'],
                 'role-provider-privileged' => ['read', 'set'],
@@ -126,7 +129,7 @@ return [
                 '*' => true
             ]
         ],
-        EvaluationQuestionOption::class => [
+        EvaluationQuestionOptionModel::class => [
             'access' => [
                 'everyone' => ['read'],
                 'role-provider-privileged' => ['read', 'set'],
@@ -135,7 +138,7 @@ return [
                 '*' => true
             ]
         ],
-        Location::class => [
+        LocationModel::class => [
             'access' => [
                 'everyone' => ['read'],
                 'role-provider-privileged' => ['read', 'set'], 
@@ -145,7 +148,7 @@ return [
                 '*' => true
             ]
         ],
-        Topic::class => [
+        TopicModel::class => [
             'access' => [
                 'role-provider-privileged' => ['read', 'set'], 
                 'role-class-privileged' => ['read', 'set'], 
@@ -162,7 +165,7 @@ return [
                 '*' => true
             ]
         ],
-        User::class => [
+        UserModel::class => [
             'access' => [
                 'role-provider-privileged' => ['read', 'set'], 
                 'role-class-privileged' => ['read', 'set'], 
@@ -171,7 +174,16 @@ return [
                 '*' => true
             ]
         ],
-        Organization::class => [
+        OrganizationModel::class => [
+            'access' => [
+                'role-provider-privileged' => ['read', 'set'], 
+                'role-class-privileged' => ['read', 'set'], 
+            ],
+            'fields' => [
+                '*' => true
+            ]
+        ],
+        ProviderModel::class => [
             'access' => [
                 'role-provider-privileged' => ['read', 'set'], 
                 'role-class-privileged' => ['read', 'set'], 
@@ -182,6 +194,14 @@ return [
         ],
     ],
     'routeRules' => [
+
+        'getProviders' => ['everyone'],
+        'postProviders' => ['everyone'],
+        'headProviderObject' => ['everyone'],
+        'getProviderObject' => ['everyone'],
+        'patchProviderObject' => ['everyone'],
+        'deleteProviderObject' => ['everyone'],
+
         'getClasses' => ['everyone'],
         'postClasses' => ['everyone'],
         'headClassObject' => ['everyone'],

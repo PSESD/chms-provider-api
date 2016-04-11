@@ -5,12 +5,17 @@ use Cache;
 use CHMS\Provider\Repositories\User\Contract as UserProvider;
 use CHMS\Provider\Repositories\Client\Contract as ClientProvider;
 use CHMS\Provider\Repositories\Role\Contract as RoleProvider;
+use CHMS\Provider\Repositories\Provider\Contract as ProviderProvider;
 use CHMS\Common\Contracts\Acl as AclContract;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use Illuminate\Http\Request;
 
 trait ApplicationTestTrait
 {
+    static $providerAdminUser;
+    static $studentUser;
+    static $superAdminUser;
+
     /**
      * Creates the application.
      *
@@ -36,50 +41,72 @@ trait ApplicationTestTrait
     {
         $this->setupUsers();
         $userProvider = app(UserProvider::class);
-        return $userProvider->find(['email' => 'superadmin@example.com']);;
+        return $userProvider->find(['id' => static::$superAdminUser]);
     }
 
     protected function getStudent()
     {
         $this->setupUsers();
         $userProvider = app(UserProvider::class);
-        return $userProvider->find(['email' => 'student@example.com']);;
+        return $userProvider->find(['id' => static::$studentUser]);
     }
 
-    protected function getHubAdmin()
+    protected function getProviderAdmin()
     {
         $this->setupUsers();
         $userProvider = app(UserProvider::class);
-        return $userProvider->find(['email' => 'hubadmin@example.com']);;
+        return $userProvider->find(['id' => static::$providerAdminUser]);
     }
 
     protected function setupUsers()
     {
         $this->setupRoles();
+        $providerProvider = app(ProviderProvider::class);
         $userProvider = app(UserProvider::class);
         $roleProvider = app(RoleProvider::class);
 
-        $admin = $userProvider->find(['email' => 'superadmin@example.com']);
+        $providerAttributes = ['name' => 'Main Provider', 'provider_secret' => 'foobar'];
+        $mainProvider = $providerProvider->find($providerAttributes);
+        if (empty($admin)) {
+            $mainProvider = $providerProvider->create($providerAttributes);
+        }
+
+        $userRoleAttributes = ['provider_id' => $mainProvider->id];
+        
+        $admin = null;
+        if (!empty(static::$superAdminUser)) {
+            $admin = $userProvider->find(['id' => static::$superAdminUser]);
+        }
         if (empty($admin)) {
             $admin = $userProvider->create([
             ]);
-            $admin->roles()->save($roleProvider->getRoleBySystemId('super_administrator'));
+            // \dump($roleProvider->findAll());exit;
+            // \dump($roleProvider->getRoleBySystemId('super_administrator'));exit;
+            $admin->roles()->save($roleProvider->getRoleBySystemId('super_administrator'), $userRoleAttributes);
         }
+        static::$superAdminUser = $admin->id;
 
-        $student = $userProvider->find(['email' => 'student@example.com']);
+        $student = null;
+        if (!empty(static::$studentUser)) {
+            $student = $userProvider->find(['id' => static::$studentUser]);
+        }
         if (empty($student)) {
             $student = $userProvider->create([
             ]);
-            $student->roles()->save($roleProvider->getRoleBySystemId('student'));
+            $student->roles()->save($roleProvider->getRoleBySystemId('student'), $userRoleAttributes);
         }
+        static::$studentUser = $student->id;
 
-
-        $hubAdmin = $userProvider->find(['email' => 'hubadmin@example.com']);
-        if (empty($hubAdmin)) {
-            $hubAdmin = $userProvider->create([
+        $providerAdmin = null;
+        if (!empty(static::$providerAdminUser)) {
+            $providerAdmin = $userProvider->find(['id' => static::$providerAdminUser]);
+        }
+        if (empty($providerAdmin)) {
+            $providerAdmin = $userProvider->create([
             ]);
-            $hubAdmin->roles()->save($roleProvider->getRoleBySystemId('hub_administrator'));
+            $providerAdmin->roles()->save($roleProvider->getRoleBySystemId('provider_administrator'), $userRoleAttributes);
         }
+        static::$providerAdminUser = $providerAdmin->id;
 
     }
 

@@ -13,6 +13,7 @@ class Topic extends BaseModel
      * @inheritdoc
      */
     protected $fillable = [
+        'provider_id',
         'name'
     ];
 

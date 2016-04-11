@@ -5,7 +5,7 @@ use CHMSTests\Provider\TestCase;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use CHMS\Common\Contracts\Acl as AclContract;
 use CHMS\Provider\Models\User as UserModel;
-use CHMSTests\Provider\Stubs\GenericModel;
+use CHMSTests\Common\Stubs\GenericModel;
 
 class BaseFilterTest extends TestCase
 {

@@ -84,6 +84,6 @@ class AppServiceProvider extends ServiceProvider
 
     public static function getObjectModelNames()
     {
-        return ['Organization', 'ClassRecord', 'ClockHourRecord', 'Role', 'User', 'Evaluation', 'EvaluationQuestion', 'Location', 'Topic'];
+        return ['Organization', 'ClassRecord', 'ClockHourRecord', 'Provider', 'Role', 'User', 'Evaluation', 'EvaluationQuestion', 'Location', 'Topic'];
     }
 }

@@ -1,8 +1,8 @@
 <?php
 namespace CHMSTests\Provider\Http\Controllers\Records;
 
-use CHMS\Provider\Http\Controllers\Records\ObjectTrait as BaseObjectTrait;
-use CHMS\Provider\Repositories\Record\Contract;
+use CHMS\Provider\Http\Controllers\ClockHourRecord\ObjectTrait as BaseObjectTrait;
+use CHMS\Provider\Repositories\ClockHourRecord\Contract;
 use CHMSTests\Provider\ApplicationTestTrait;
 
 trait ObjectTrait

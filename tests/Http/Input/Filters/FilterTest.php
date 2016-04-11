@@ -4,7 +4,7 @@ namespace CHMSTests\Provider\Http\Input\Filters;
 use CHMSTests\Provider\TestCase;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use CHMS\Common\Contracts\Acl as AclContract;
-use CHMSTests\Provider\Stubs\GenericModel;
+use CHMSTests\Common\Stubs\GenericModel;
 
 abstract class FilterTest extends TestCase
 {

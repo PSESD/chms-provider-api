@@ -13,6 +13,7 @@ class ClassRecord extends BaseModel
      * @inheritdoc
      */
     protected $fillable = [
+        'provider_id',
         'evaluation_id',
         'title',
         'instructional_hours', 

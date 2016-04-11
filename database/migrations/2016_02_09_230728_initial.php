@@ -57,15 +57,12 @@ class Initial extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary()->collation('ascii_bin');
-            $table->uuid('provider_id')->collation('ascii_bin');
             $table->string('context', 20);
-            $table->string('system_id', 50);
+            $table->string('system_id', 50)->unique();
             $table->string('name', 100);
             $table->dateTime('updated_at')->nullable();
             $table->dateTime('created_at')->nullable();
-            $table->unique(['provider_id', 'system_id']);
             $table->foreign('id')->references('id')->on('registry')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->foreign('provider_id')->references('id')->on('providers')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
 
         Schema::create('role_users', function (Blueprint $table) {
@@ -73,6 +70,7 @@ class Initial extends Migration
             $table->increments('id');
             $table->uuid('user_id')->collation('ascii_bin');
             $table->uuid('role_id')->collation('ascii_bin');
+            $table->uuid('provider_id')->collation('ascii_bin')->nullable();
             $table->uuid('object_id')->collation('ascii_bin')->nullable();
             $table->text('meta')->nullable();
             $table->dateTime('updated_at')->nullable();
@@ -80,6 +78,7 @@ class Initial extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('object_id')->references('id')->on('registry')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('provider_id')->references('id')->on('providers')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
 
 

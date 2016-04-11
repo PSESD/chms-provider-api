@@ -7,14 +7,14 @@
  */
 namespace CHMS\Provider\Models;
 
-class Evaluation extends BaseModel
+class Provider extends BaseModel
 {
     /**
      * @inheritdoc
      */
     protected $fillable = [
-        'provider_id',
-        'name'
+        'name',
+        'provider_secret'
     ];
 
     /**
@@ -22,10 +22,6 @@ class Evaluation extends BaseModel
      */
     public function rules()
     {
-        return [
-            [['name'], ['required']],
-            [['name'], ['filled']],
-            [['name'], ['string', 'max:255']]
-        ];
+        return [];
     }
 }

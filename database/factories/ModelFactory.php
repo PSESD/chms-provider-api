@@ -1,6 +1,12 @@
 <?php
 use CHMS\Provider\Models;
-use CHMSTests\Provider\Stubs\GenericModel;
+use CHMSTests\Common\Stubs\GenericModel;
+
+$factory->define(Models\Provider::class, function ($faker) {
+    $base = factory(GenericModel::class, 'Provider')->make()->toArray();
+    return array_merge($base, [
+    ]);
+});
 
 $factory->define(Models\User::class, function ($faker) {
     $base = factory(GenericModel::class, 'User')->make()->toArray();
@@ -39,7 +45,8 @@ $factory->define(Models\RoleUser::class, function ($faker) {
     $base = factory(GenericModel::class, 'RoleUser')->make()->toArray();
     return array_merge($base, [
         'user_id' => factory(Models\User::class)->create()->id,
-        'role_id' => factory(Models\Role::class)->create()->id
+        'role_id' => factory(Models\Role::class)->create()->id,
+        'provider_id' => factory(Models\Provider::class)->create()->id
     ]);
 });
 
@@ -55,6 +62,7 @@ $factory->defineAs(Models\RoleUser::class, 'object', function ($faker) {
 $factory->define(Models\Evaluation::class, function ($faker) {
     $base = factory(GenericModel::class, 'Evaluation')->make()->toArray();
     return array_merge($base, [
+        'provider_id' => factory(Models\Provider::class)->create()->id
     ]);
 });
 
@@ -74,14 +82,17 @@ $factory->define(Models\EvaluationQuestionOption::class, function ($faker) {
 
 $factory->define(Models\ClassRecord::class, function ($faker) {
     $base = factory(GenericModel::class, 'ClassRecord')->make()->toArray();
+    $evaluation = factory(Models\Evaluation::class)->create();
     return array_merge($base, [
-       'evaluation_id' => factory(Models\Evaluation::class)->create()->id 
+       'evaluation_id' => $evaluation->id,
+       'provider_id' => $evaluation->provider_id
     ]);
 });
 
 $factory->define(Models\Location::class, function ($faker) {
     $base = factory(GenericModel::class, 'Location')->make()->toArray();
     return array_merge($base, [
+        'provider_id' => factory(Models\Provider::class)->create()->id
     ]);
 });
 
@@ -95,6 +106,7 @@ $factory->define(Models\ClassMeeting::class, function ($faker) {
 $factory->define(Models\Topic::class, function ($faker) {
     $base = factory(GenericModel::class, 'Topic')->make()->toArray();
     return array_merge($base, [ 
+        'provider_id' => factory(Models\Provider::class)->create()->id
     ]);
 });
 
@@ -115,6 +127,13 @@ $factory->define(Models\ClockHourRecord::class, function ($faker) {
 });
 
 
+$factory->defineAs(GenericModel::class, 'Provider', function ($faker) {
+    $name = $faker->colorName;
+    return [
+        'name' => $faker->company,
+        'provider_secret' => 'foobar'
+    ];
+});
 $factory->defineAs(GenericModel::class, 'User', function ($faker) {
     return [
     ];
@@ -138,12 +157,14 @@ $factory->defineAs(GenericModel::class, 'RoleUser', function ($faker) {
     return [
         'role_id' => $faker->uuid,
         'user_id' => $faker->uuid,
+        'provider_id' => $faker->uuid,
     ];
 });
 
 $factory->defineAs(GenericModel::class, 'Evaluation', function ($faker) {
     return [
-        'name' => $faker->catchPhrase
+        'name' => $faker->catchPhrase,
+        'provider_id' => $faker->uuid
     ];
 });
 
@@ -162,9 +183,9 @@ $factory->defineAs(GenericModel::class, 'EvaluationQuestionOption', function ($f
         'order' => 0
     ];
 });
-
 $factory->defineAs(GenericModel::class, 'ClassRecord', function ($faker) {
     return [
+        'provider_id' => $faker->uuid,
         'evaluation_id' => $faker->uuid,
         'title' => $faker->catchPhrase,
         'instructional_hours' => round(rand(1,10)),
@@ -184,6 +205,7 @@ $factory->defineAs(GenericModel::class, 'ClassRecord', function ($faker) {
 
 $factory->defineAs(GenericModel::class, 'Location', function ($faker) {
     return [
+        'provider_id' => $faker->uuid,
         'name' => 'Primary',
         'address_1' => $faker->streetAddress,
         'address_2' => $faker->secondaryAddress,
@@ -208,6 +230,7 @@ $factory->defineAs(GenericModel::class, 'ClassMeeting', function ($faker) {
 
 $factory->defineAs(GenericModel::class, 'Topic', function ($faker) {
     return [
+        'provider_id' => $faker->uuid,
         'name' => $faker->catchPhrase,
     ];
 });

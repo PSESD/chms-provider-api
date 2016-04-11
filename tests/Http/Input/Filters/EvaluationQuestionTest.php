@@ -4,7 +4,7 @@ namespace CHMSTests\Provider\Http\Input\Filters;
 use CHMS\Provider\Http\Input\Filters\EvaluationQuestion as Filter;
 use CHMS\Provider\Models\EvaluationQuestion as Model;
 use CHMS\Common\Exceptions\InvalidInputException;
-use CHMSTests\Provider\Stubs\GenericModel;
+use CHMSTests\Common\Stubs\GenericModel;
 
 class EvaluationQuestionTest extends FilterTest
 {

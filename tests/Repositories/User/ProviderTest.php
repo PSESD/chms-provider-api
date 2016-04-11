@@ -18,45 +18,7 @@ class ProviderTest extends BaseRepositoryTest
         return Provider::class;
     }
 
-    public function testGetByEmail()
-    {
-        $existingModel = $this->createModel();
-        $this->assertEquals($existingModel->id, $this->getProvider()->getByEmail($existingModel->email)->id);
-    }
-
-    public function testCheckCredentials()
-    {
-        $existingModel = $this->createModel('password_foobar');
-        $foundModel = $this->getProvider()->checkCredentials([
-            'email' => $existingModel->email,
-            'password' => 'foobar'
-        ]);
-        $this->assertEquals($existingModel->id, $foundModel->id);
-
-        $foundModel = $this->getProvider()->checkCredentials([
-            'user' => $existingModel->email,
-            'password' => 'foobar'
-        ]);
-        $this->assertEquals($existingModel->id, $foundModel->id);
-
-        $foundModel = $this->getProvider()->checkCredentials([
-            'email' => 'boom@boom.com',
-            'password' => 'foobar'
-        ]);
-        $this->assertFalse($foundModel);
-
-        $foundModel = $this->getProvider()->checkCredentials([
-            'user' => $existingModel->email
-        ]);
-        $this->assertFalse($foundModel);
-
-
-        $foundModel = $this->getProvider()->checkCredentials([
-            'user' => $existingModel->email,
-            'password' => 'foobar2'
-        ]);
-        $this->assertFalse($foundModel);
-    }
+    
 
     /**
      * Test BaseRepository

@@ -7,8 +7,16 @@
  */
 namespace CHMS\Provider\Models;
 
-class User extends BaseModel
+use Laravel\Lumen\Auth\Authorizable;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+
+class User extends BaseModel implements
+    AuthenticatableContract
 {
+    use Authorizable;
+    use Authenticatable;
+
     /**
      * @inheritdoc
      */

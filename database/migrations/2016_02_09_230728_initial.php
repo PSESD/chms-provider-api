@@ -26,6 +26,7 @@ class Initial extends Migration
             // $table->uuid('organization_id')->nullable()->collation('ascii_bin');
             $table->string('name');
             $table->string('provider_secret', 60);
+            $table->string('slug', 20)->unique();
             $table->dateTime('deleted_at')->nullable();
             $table->uuid('deleted_by')->nullable()->collation('ascii_bin');
             $table->dateTime('updated_at')->nullable();

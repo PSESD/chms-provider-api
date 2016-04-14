@@ -19,7 +19,7 @@ trait ObjectTrait
 
     public function getRoute()
     {
-        return '/records';
+        return $this->getProviderRoute('records');
     }
 
     protected function notExpectedAttributes()

@@ -7,8 +7,8 @@
  */
 namespace CHMS\Provider\Http\Controllers\Records;
 
-use CHMS\Provider\Repositories\Record\Contract;
-use CHMS\Provider\Http\Transformers\Record as Transformer;
+use CHMS\Provider\Repositories\ClockHourRecord\Contract;
+use CHMS\Provider\Http\Transformers\ClockHourRecord as Transformer;
 
 trait ObjectTrait
 {

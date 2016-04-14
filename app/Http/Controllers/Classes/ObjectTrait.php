@@ -7,8 +7,8 @@
  */
 namespace CHMS\Provider\Http\Controllers\Classes;
 
-use CHMS\Provider\Repositories\ClassReference\Contract;
-use CHMS\Provider\Http\Transformers\ClassReference as Transformer;
+use CHMS\Provider\Repositories\ClassRecord\Contract;
+use CHMS\Provider\Http\Transformers\ClassRecord as Transformer;
 
 trait ObjectTrait
 {

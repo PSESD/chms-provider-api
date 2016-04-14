@@ -18,6 +18,11 @@ trait ObjectTrait
 
     public function getRoute()
     {
-        return '/classes';
+        return $this->getProviderRoute('classes');
+    }
+
+    protected function notExpectedAttributes()
+    {
+        return ['expected_participants', 'has_college_credit', 'list_publicly', 'online_class', 'instructional_hours'];
     }
 }

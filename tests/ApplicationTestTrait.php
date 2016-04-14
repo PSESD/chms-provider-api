@@ -15,6 +15,7 @@ trait ApplicationTestTrait
     static $providerAdminUser;
     static $studentUser;
     static $superAdminUser;
+    static $provider;
 
     /**
      * Creates the application.
@@ -65,11 +66,7 @@ trait ApplicationTestTrait
         $userProvider = app(UserProvider::class);
         $roleProvider = app(RoleProvider::class);
 
-        $providerAttributes = ['name' => 'Main Provider', 'provider_secret' => 'foobar'];
-        $mainProvider = $providerProvider->find($providerAttributes);
-        if (empty($admin)) {
-            $mainProvider = $providerProvider->create($providerAttributes);
-        }
+        $mainProvider = $this->getProvider();
 
         $userRoleAttributes = ['provider_id' => $mainProvider->id];
         
@@ -137,5 +134,29 @@ trait ApplicationTestTrait
         $this->refresh();
         $acl = app(AclContract::class);
         $acl->setupRoles();
+    }
+    protected function getProvider()
+    {
+        if (!empty(static::$provider)) {
+            return static::$provider;
+        }
+        $providerProvider = app(ProviderProvider::class);
+        $providerAttributes = ['name' => 'Main Provider', 'provider_secret' => 'foobar', 'slug' => 'foo'];
+        $mainProvider = $providerProvider->find($providerAttributes);
+        if (empty($mainProvider)) {
+            $mainProvider = $providerProvider->create($providerAttributes);
+        }
+        static::$provider = $mainProvider;
+        return $mainProvider;
+    }
+    protected function getProviderRoute($url = null)
+    {
+        $route = [];
+        $route[] = 'providers';
+        $route[] = $this->getProvider()->slug;
+        if (!is_null($url)) {
+            $route[] = $url;
+        }
+        return '/' . implode('/', $route);
     }
 }

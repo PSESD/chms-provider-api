@@ -131,7 +131,8 @@ $factory->defineAs(GenericModel::class, 'Provider', function ($faker) {
     $name = $faker->colorName;
     return [
         'name' => $faker->company,
-        'provider_secret' => 'foobar'
+        'provider_secret' => 'foobar',
+        'slug' => str_random(5)
     ];
 });
 $factory->defineAs(GenericModel::class, 'User', function ($faker) {

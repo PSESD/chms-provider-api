@@ -61,7 +61,9 @@ return [
         'role-provider-privileged' => [
             ['allow', 'roles' => 'provider_administrator'],
             ['allow', 'roles' => 'provider_registrar'],
-            ['allow', 'roles' => 'provider_reviewer']
+            ['allow', 'roles' => 'provider_reviewer'],
+            ['allow', 'roles' => 'super_administrator'],
+            ['allow', 'roles' => 'hub_administrator'],
         ],
         'role-class-privileged' => [
             ['allow', 'roles' => 'class_creator'],

@@ -14,7 +14,8 @@ class Provider extends BaseModel
      */
     protected $fillable = [
         'name',
-        'provider_secret'
+        'provider_secret',
+        'slug'
     ];
 
     /**

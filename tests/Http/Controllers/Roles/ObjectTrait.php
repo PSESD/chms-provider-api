@@ -17,6 +17,6 @@ trait ObjectTrait
 
     public function getRoute()
     {
-        return '/roles';
+        return $this->getProviderRoute('roles');
     }
 }

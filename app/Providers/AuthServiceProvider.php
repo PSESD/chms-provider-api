@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use CHMS\Provider\Repositories\User\Contract as UserProvider;
 use CHMS\Provider\Auth\Acl;
+use CHMS\Provider\Auth\ProxyAuthorizer;
 use CHMS\Common\Auth\OAuthGuard;
 use CHMS\Common\Contracts\Acl as AclContract;
 use CHMS\Common\Contracts\InputGate as InputGateContract;
@@ -48,6 +49,13 @@ class AuthServiceProvider extends ServiceProvider
 
         Auth::provider('hubAuthProvider', function($app, array $config) {
             return new ClientUserProvider($app['hash'], $config['model']);
+        });
+
+
+        $this->app->singleton('authorizer', function ($app) {
+            $app->configure('authorizer');
+            $authorizer = new ProxyAuthorizer($app, config('authorizer'));
+            return $authorizer;
         });
 
         $this->app->singleton(AclContract::class, function ($app) {

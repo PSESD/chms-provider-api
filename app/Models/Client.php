@@ -12,7 +12,7 @@ use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-class User extends BaseModel implements
+class Client extends BaseModel implements
     AuthenticatableContract
 {
     use EnsureTrait;
@@ -31,11 +31,5 @@ class User extends BaseModel implements
     public function rules()
     {
         return [];
-    }
-
-
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class, 'role_users');
     }
 }

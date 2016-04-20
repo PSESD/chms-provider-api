@@ -26,19 +26,17 @@ $app->addRoute('GET', '/version', function () use ($app) {
     return ['version' => $app->version()];
 });
 
-$primaryMiddleware = ['oauth', 'oauth-user', 'auth:user', 'auth-route'];
-$clientMiddleware = ['oauth', 'oauth-client', 'auth:client', 'auth-route'];
-$mixMiddleware = ['oauth', 'auth:*', 'auth-route'];
+$primaryMiddleware = ['auth:user']; // ['oauth', 'oauth-user', 'auth:user', 'auth-route'];
+$clientMiddleware = ['auth:client']; // ['oauth', 'oauth-client', 'auth:client', 'auth-route'];
+$mixMiddleware = ['auth:*']; //['oauth', 'auth:*', 'auth-route'];
 $providerBaseRoute = '/providers/{providerId}';
 
-
-$app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => $clientMiddleware], function ($app) use ($providerBaseRoute) {
+$app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => $mixMiddleware], function ($app) use ($providerBaseRoute) {
 
     /**
      * Path: /provider
      */
     $app->addRoute('GET', '/providers', ['as' => 'getProviders', 'uses' => 'Providers\IndexController@get']);
-    $app->addRoute('POST', '/providers', ['as' => 'postProviders', 'uses' => 'Providers\IndexController@post']);
 
 
     /**
@@ -46,12 +44,24 @@ $app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => $c
      */
     $app->addRoute('HEAD', $providerBaseRoute, ['as' => 'headProviderObject', 'uses' => 'Providers\ObjectController@head']);
     $app->addRoute('GET', $providerBaseRoute, ['as' => 'getProviderObject', 'uses' => 'Providers\ObjectController@get']);
+});
+
+$app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => $primaryMiddleware], function ($app) use ($providerBaseRoute) {
+
+    /**
+     * Path: /provider
+     */
+    $app->addRoute('POST', '/providers', ['as' => 'postProviders', 'uses' => 'Providers\IndexController@post']);
+
+
+    /**
+     * Path: /providers/{providerId}
+     */
     $app->addRoute('PATCH', $providerBaseRoute, ['as' => 'patchProviderObject', 'uses' => 'Providers\ObjectController@patch']);
     $app->addRoute('DELETE', $providerBaseRoute, ['as' => 'deleteProviderObject', 'uses' => 'Providers\ObjectController@delete']);
 });
 
-
-$app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => $clientMiddleware], function ($app) use ($providerBaseRoute) {
+$app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => array_merge(['prepare-context'], $clientMiddleware)], function ($app) use ($providerBaseRoute) {
 
     /**
      * Path: /providers/{providerId}/classes/{classId}/evaluationResponses
@@ -60,7 +70,7 @@ $app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => $c
 });
 
 
-$app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => $mixMiddleware], function ($app) use ($providerBaseRoute) {
+$app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => array_merge(['prepare-context'], $mixMiddleware)], function ($app) use ($providerBaseRoute) {
     /**
      * Path: /providers/{providerId}/classes/{classId}
      */
@@ -124,7 +134,7 @@ $app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => $m
 
 });
 
-$app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => $primaryMiddleware], function ($app) use ($providerBaseRoute) {
+$app->group(['namespace' => 'CHMS\Provider\Http\Controllers', 'middleware' => array_merge(['prepare-context'], $primaryMiddleware)], function ($app) use ($providerBaseRoute) {
     /**
      * Path: /providers/{providerId}/classes
      */

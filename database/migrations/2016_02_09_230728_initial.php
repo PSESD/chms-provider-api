@@ -48,6 +48,13 @@ class Initial extends Migration
             $table->foreign('id')->references('id')->on('registry')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
 
+        Schema::create('clients', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->uuid('id')->primary()->collation('ascii_bin');
+            $table->dateTime('created_at')->nullable();
+            $table->foreign('id')->references('id')->on('registry')->onDelete('CASCADE')->onUpdate('CASCADE');
+        });
+
         Schema::create('organizations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary()->collation('ascii_bin');
@@ -101,7 +108,7 @@ class Initial extends Migration
             $table->foreign('deleted_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
             $table->foreign('updated_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
         });
-        
+
         Schema::create('evaluation_questions', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary()->collation('ascii_bin');
@@ -296,6 +303,7 @@ class Initial extends Migration
             'roles',
             'organizations',
             'users',
+            'clients',
             'providers',
             'registry'
         ];

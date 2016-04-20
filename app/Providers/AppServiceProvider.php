@@ -8,11 +8,12 @@
 namespace CHMS\Provider\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use CHMS\Provider\Http\Request;
 use CHMS\Common\Http\Middleware\AuthRoute;
 use CHMS\Provider\Http\Middleware\Authenticate;
+use CHMS\Provider\Http\Middleware\PrepareContext;
 use CHMS\Common\Providers\FractalServiceProvider;
 use Illuminate\Redis\RedisServiceProvider;
-use Request;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -44,6 +45,10 @@ class AppServiceProvider extends ServiceProvider
         //     // $query->time
         // });
 
+        if (!class_exists('Authorizer')) {
+            class_alias('CHMS\Provider\Facades\Authorizer', 'Authorizer');
+        }
+
         if (!class_exists('Hash')) {
             class_alias('Illuminate\Support\Facades\Hash', 'Hash');
         }
@@ -56,16 +61,17 @@ class AppServiceProvider extends ServiceProvider
 		    \Illuminate\Contracts\Debug\ExceptionHandler::class,
 		    \CHMS\Provider\Exceptions\Handler::class
 		);
+        $this->app->alias(Request::class, 'request');
 
 		// Register Middleware
 		$this->app->middleware([
-            \LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware::class,
+            // \LucaDegasperi\OAuth2Server\Middleware\OAuthExceptionHandlerMiddleware::class,
 		]);
 
 		$this->app->routeMiddleware([
             'auth' => Authenticate::class,
             'auth-route' => AuthRoute::class,
-
+            'prepare-context' => PrepareContext::class,
             'check-authorization-params' => \LucaDegasperi\OAuth2Server\Middleware\CheckAuthCodeRequestMiddleware::class,
 		]);
         $this->app->register(PolicyProvider::class);

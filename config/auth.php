@@ -21,11 +21,11 @@ return [
     'providers' => [
         'user' => [
             'driver' => 'eloquent',
-            'model' => CHMS\Provider\Models\User::class
+            'model' => CHMS\SponsorProvider\Models\User::class
         ],
         'client' => [
             'driver' => 'hubAuthProvider',
-            'model' => CHMS\Provider\Models\Client::class
+            'model' => CHMS\SponsorProvider\Models\Client::class
         ]
     ]
 ];

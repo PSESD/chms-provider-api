@@ -1,16 +1,16 @@
 <?php
 /**
- * Clock Hour Management System - Provider
+ * Clock Hour Management System - Sponsor Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\Provider\Http\Input\Filters;
+namespace CHMS\SponsorProvider\Http\Input\Filters;
 
 use League\Fractal;
-use CHMS\Provider\Models\Provider as Model;
+use CHMS\SponsorProvider\Models\Sponsor as Model;
 use CHMS\Common\Http\Input\Filters\BaseFilter;
 
-class Provider extends BaseFilter
+class Sponsor extends BaseFilter
 {
 }

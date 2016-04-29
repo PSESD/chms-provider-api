@@ -1,9 +1,9 @@
 <?php
-namespace CHMSTests\Provider\Repositories\User;
+namespace CHMSTests\SponsorProvider\Repositories\User;
 
-use CHMSTests\Provider\Repositories\BaseRepositoryTest;
-use CHMS\Provider\Repositories\User\Provider;
-use CHMS\Provider\Repositories\User\Contract;
+use CHMSTests\SponsorProvider\Repositories\BaseRepositoryTest;
+use CHMS\SponsorProvider\Repositories\User\Provider;
+use CHMS\SponsorProvider\Repositories\User\Contract;
 use Illuminate\Contracts\Pagination\Paginator as PaginatorContract;
 
 class ProviderTest extends BaseRepositoryTest

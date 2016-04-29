@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\Provider\Models;
+namespace CHMSTests\SponsorProvider\Models;
 
-use CHMS\Provider\Models\Location as Model;
-use CHMSTests\Provider\TestCase;
+use CHMS\SponsorProvider\Models\Location as Model;
+use CHMSTests\SponsorProvider\TestCase;
 
 class LocationTest extends BaseModelTest
 {

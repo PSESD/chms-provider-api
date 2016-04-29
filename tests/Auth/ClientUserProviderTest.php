@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\Provider\Auth;
+namespace CHMSTests\SponsorProvider\Auth;
 
-use CHMS\Provider\Auth\ClientUserProvider;
-use CHMSTests\Provider\TestCase;
+use CHMS\SponsorProvider\Auth\ClientUserProvider;
+use CHMSTests\SponsorProvider\TestCase;
 
 class ClientUserProviderTest extends TestCase
 {

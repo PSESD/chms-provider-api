@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\Provider\Http\Input\Filters;
+namespace CHMSTests\SponsorProvider\Http\Input\Filters;
 
-use CHMS\Provider\Http\Input\Filters\EvaluationQuestion as Filter;
-use CHMS\Provider\Models\EvaluationQuestion as Model;
+use CHMS\SponsorProvider\Http\Input\Filters\EvaluationQuestion as Filter;
+use CHMS\SponsorProvider\Models\EvaluationQuestion as Model;
 use CHMS\Common\Exceptions\InvalidInputException;
 use CHMSTests\Common\Stubs\GenericModel;
 
@@ -24,7 +24,7 @@ class EvaluationQuestionTest extends FilterTest
         $base = factory(GenericModel::class, 'EvaluationQuestion')->make()->toArray();
         $tests = [];
         // $tests[] = [
-        //     'roles' => ['provider_administrator'],
+        //     'roles' => ['sponsor_administrator'],
         //     'input' => array_merge($base, []),
         //     'scenario' => 'create', 
         //     'expectException' => false

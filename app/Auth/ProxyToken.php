@@ -1,11 +1,13 @@
 <?php
 /**
- * Clock Hour Management System - Provider
+ * Clock Hour Management System - Sponsor Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\Provider\Auth;
+namespace CHMS\SponsorProvider\Auth;
+use CHMS\SponsorProvider\Models\User;
+use CHMS\SponsorProvider\Models\Client;
 
 class ProxyToken
 {
@@ -13,6 +15,7 @@ class ProxyToken
     private $id;
     private $type;
     private $expires;
+    private $isSuperAdmin = false;
     private $meta = [];
 
     /**
@@ -26,7 +29,7 @@ class ProxyToken
         if (!isset($raw['id']) || !isset($raw['type']) || !isset($raw['meta']) || !isset($raw['expires'])) {
             return false;
         }
-        return new static($token, $raw['type'], $raw['id'], $raw['expires'], $raw['meta']);
+        return new static($token, $raw);
     }
 
     /**
@@ -37,13 +40,14 @@ class ProxyToken
      * @param int $expires
      * @param array $meta
      */
-    public function __construct($token, $type, $id, $expires, $meta = [])
+    public function __construct($token, $raw)
     {
         $this->token = $token;
-        $this->id = $id;
-        $this->type = $type;
-        $this->meta = $meta;
-        $this->expires = $expires;
+        $this->id = $raw['id'];
+        $this->type = $raw['type'];
+        $this->meta = isset($raw['meta']) ? $raw['meta'] : [];
+        $this->isSuperAdmin = isset($raw['is_super_admin']) ? $raw['is_super_admin'] : false;
+        $this->expires = $raw['expires'];
     }
 
     /**
@@ -99,7 +103,17 @@ class ProxyToken
     public function ensureObject()
     {
         if ($this->type === 'user') {
-            return User::ensure($this->id);
+            $result = User::ensure($this->id);
+            if ($result) {
+                $context = app('context');
+                if ($context->getProviderId()) {
+                    $result = User::ensureRole($this->id, ['student'], $context->getProviderId());
+                }
+                if ($this->isSuperAdmin) {
+                    $result = $result && User::ensureRole($this->id, ['super_administrator']);
+                }
+            }
+            return $result;
         } elseif ($this->type === 'client') {
             return Client::ensure($this->id);
         }

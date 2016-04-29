@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\Provider\Http\Transformers;
+namespace CHMSTests\SponsorProvider\Http\Transformers;
 
-use CHMS\Provider\Http\Transformers\ClassRecord as Transformer;
-use CHMS\Provider\Models\ClassRecord as Model;
+use CHMS\SponsorProvider\Http\Transformers\ClassRecord as Transformer;
+use CHMS\SponsorProvider\Models\ClassRecord as Model;
 
 class ClassRecordTest extends TransformerTest
 {

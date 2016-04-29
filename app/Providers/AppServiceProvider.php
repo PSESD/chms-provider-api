@@ -1,17 +1,17 @@
 <?php
 /**
- * Clock Hour Management System - Provider
+ * Clock Hour Management System - Sponsor Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\Provider\Providers;
+namespace CHMS\SponsorProvider\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use CHMS\Provider\Http\Request;
+use CHMS\SponsorProvider\Http\Request;
 use CHMS\Common\Http\Middleware\AuthRoute;
-use CHMS\Provider\Http\Middleware\Authenticate;
-use CHMS\Provider\Http\Middleware\PrepareContext;
+use CHMS\SponsorProvider\Http\Middleware\Authenticate;
+use CHMS\SponsorProvider\Http\Middleware\PrepareContext;
 use CHMS\Common\Providers\FractalServiceProvider;
 use Illuminate\Redis\RedisServiceProvider;
 
@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
         // });
 
         if (!class_exists('Authorizer')) {
-            class_alias('CHMS\Provider\Facades\Authorizer', 'Authorizer');
+            class_alias('CHMS\SponsorProvider\Facades\Authorizer', 'Authorizer');
         }
 
         if (!class_exists('Hash')) {
@@ -59,9 +59,8 @@ class AppServiceProvider extends ServiceProvider
 		// Register bindings
 		$this->app->singleton(
 		    \Illuminate\Contracts\Debug\ExceptionHandler::class,
-		    \CHMS\Provider\Exceptions\Handler::class
+		    \CHMS\SponsorProvider\Exceptions\Handler::class
 		);
-        $this->app->alias(Request::class, 'request');
 
 		// Register Middleware
 		$this->app->middleware([
@@ -90,6 +89,6 @@ class AppServiceProvider extends ServiceProvider
 
     public static function getObjectModelNames()
     {
-        return ['Organization', 'ClassRecord', 'ClockHourRecord', 'Provider', 'Role', 'User', 'Evaluation', 'EvaluationQuestion', 'Location', 'Topic'];
+        return ['Organization', 'ClassRecord', 'ClockHourRecord', 'Sponsor', 'Role', 'User', 'Evaluation', 'EvaluationQuestion', 'Location', 'Topic'];
     }
 }

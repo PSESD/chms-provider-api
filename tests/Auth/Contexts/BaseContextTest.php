@@ -1,7 +1,7 @@
 <?php
-namespace CHMSTests\Provider\Auth\Contexts;
+namespace CHMSTests\SponsorProvider\Auth\Contexts;
 
-use CHMSTests\Provider\TestCase;
+use CHMSTests\SponsorProvider\TestCase;
 
 abstract class BaseContextTest extends TestCase
 {

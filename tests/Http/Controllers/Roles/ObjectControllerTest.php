@@ -1,5 +1,5 @@
 <?php
-namespace CHMSTests\Provider\Http\Controllers\Roles;
+namespace CHMSTests\SponsorProvider\Http\Controllers\Roles;
 
 use CHMSTests\Common\Http\Controllers\Base\ObjectControllerTest as BaseObjectControllerTest;
 use CHMSTests\Common\Http\Controllers\Base\ObjectActions\GetObjectTrait;

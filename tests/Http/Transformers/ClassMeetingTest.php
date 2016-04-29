@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\Provider\Http\Transformers;
+namespace CHMSTests\SponsorProvider\Http\Transformers;
 
-use CHMS\Provider\Http\Transformers\ClassMeeting as Transformer;
-use CHMS\Provider\Models\ClassMeeting as Model;
+use CHMS\SponsorProvider\Http\Transformers\ClassMeeting as Transformer;
+use CHMS\SponsorProvider\Models\ClassMeeting as Model;
 
 class ClassMeetingTest extends TransformerTest
 {

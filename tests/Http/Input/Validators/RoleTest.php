@@ -1,7 +1,7 @@
 <?php
-namespace CHMSTests\Provider\Http\Input\Validators;
+namespace CHMSTests\SponsorProvider\Http\Input\Validators;
 
-use CHMS\Provider\Http\Input\Validators\Role as Validator;
+use CHMS\SponsorProvider\Http\Input\Validators\Role as Validator;
 
 abstract class RoleTest extends ValidatorTest
 {

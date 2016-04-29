@@ -1,14 +1,14 @@
 <?php
 /**
- * Clock Hour Management System - Provider
+ * Clock Hour Management System - Sponsor Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\Provider\Auth;
+namespace CHMS\SponsorProvider\Auth;
 
 use Cache;
-use CHMS\Provider\Http\Request;
+use CHMS\SponsorProvider\Http\Request;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Psr7\Request as GuzzleRequest;
 
@@ -38,7 +38,7 @@ class ProxyAuthorizer
     {
         $cacheKey = md5('token:' . $token);
         if (($tokenObject = Cache::get($cacheKey))) {
-            return unserialize($tokenObject);
+            // return unserialize($tokenObject);
         }
         $tokenObject = $this->askAuthorizer($token);
         if ($tokenObject) {

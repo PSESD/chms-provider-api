@@ -1,11 +1,11 @@
 <?php
 /**
- * Clock Hour Management System - Provider
+ * Clock Hour Management System - Sponsor Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\Provider\Http\Controllers\Classes;
+namespace CHMS\SponsorProvider\Http\Controllers\Classes;
 
 use CHMS\Common\Http\Controllers\Base\ObjectController as BaseController;
 use Illuminate\Http\Request;

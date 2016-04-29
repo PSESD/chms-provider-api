@@ -1,7 +1,7 @@
 <?php
-namespace CHMSTests\Provider\Http\Transformers;
+namespace CHMSTests\SponsorProvider\Http\Transformers;
 
-use CHMSTests\Provider\TestCase;
+use CHMSTests\SponsorProvider\TestCase;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use CHMS\Common\Contracts\Acl as AclContract;
 

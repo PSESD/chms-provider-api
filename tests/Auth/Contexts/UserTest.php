@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\Provider\Auth\Contexts;
+namespace CHMSTests\SponsorProvider\Auth\Contexts;
 
-use CHMS\Provider\Auth\Contexts\User as Context;
-use CHMSTests\Provider\TestCase;
+use CHMS\SponsorProvider\Auth\Contexts\User as Context;
+use CHMSTests\SponsorProvider\TestCase;
 
 class UserTest extends BaseContextTest
 {

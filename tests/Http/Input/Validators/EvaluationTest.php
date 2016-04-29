@@ -1,7 +1,7 @@
 <?php
-namespace CHMSTests\Provider\Http\Input\Validators;
+namespace CHMSTests\SponsorProvider\Http\Input\Validators;
 
-use CHMS\Provider\Http\Input\Validators\Evaluation as Validator;
+use CHMS\SponsorProvider\Http\Input\Validators\Evaluation as Validator;
 
 abstract class EvaluationTest extends ValidatorTest
 {

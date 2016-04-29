@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\Provider\Models;
+namespace CHMSTests\SponsorProvider\Models;
 
-use CHMS\Provider\Models\Organization as Model;
-use CHMSTests\Provider\TestCase;
+use CHMS\SponsorProvider\Models\Organization as Model;
+use CHMSTests\SponsorProvider\TestCase;
 
 class OrganizationTest extends BaseModelTest
 {

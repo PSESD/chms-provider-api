@@ -1,7 +1,7 @@
 <?php
-namespace CHMSTests\Provider\Http\Input\Validators;
+namespace CHMSTests\SponsorProvider\Http\Input\Validators;
 
-use CHMSTests\Provider\TestCase;
+use CHMSTests\SponsorProvider\TestCase;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 
 abstract class ValidatorTest extends TestCase

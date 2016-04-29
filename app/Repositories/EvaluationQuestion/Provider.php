@@ -1,13 +1,13 @@
 <?php
 /**
- * Clock Hour Management System - Provider
+ * Clock Hour Management System - Sponsor Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\Provider\Repositories\EvaluationQuestion;
+namespace CHMS\SponsorProvider\Repositories\EvaluationQuestion;
 
-use CHMS\Provider\Repositories\BaseRepository;
+use CHMS\SponsorProvider\Repositories\BaseRepository;
 
 class Provider
     extends BaseRepository

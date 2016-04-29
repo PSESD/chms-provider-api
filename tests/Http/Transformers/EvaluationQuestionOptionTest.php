@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\Provider\Http\Transformers;
+namespace CHMSTests\SponsorProvider\Http\Transformers;
 
-use CHMS\Provider\Http\Transformers\EvaluationQuestionOption as Transformer;
-use CHMS\Provider\Models\EvaluationQuestionOption as Model;
+use CHMS\SponsorProvider\Http\Transformers\EvaluationQuestionOption as Transformer;
+use CHMS\SponsorProvider\Models\EvaluationQuestionOption as Model;
 
 class EvaluationQuestionOptionTest extends TransformerTest
 {

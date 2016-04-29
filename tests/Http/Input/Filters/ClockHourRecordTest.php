@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\Provider\Http\Input\Filters;
+namespace CHMSTests\SponsorProvider\Http\Input\Filters;
 
-use CHMS\Provider\Http\Input\Filters\ClockHourRecord as Filter;
-use CHMS\Provider\Models\ClockHourRecord as Model;
+use CHMS\SponsorProvider\Http\Input\Filters\ClockHourRecord as Filter;
+use CHMS\SponsorProvider\Models\ClockHourRecord as Model;
 use CHMS\Common\Exceptions\InvalidInputException;
 use CHMSTests\Common\Stubs\GenericModel;
 
@@ -24,7 +24,7 @@ class ClockHourRecordTest extends FilterTest
         $base = factory(GenericModel::class, 'ClockHourRecord')->make()->toArray();
         $tests = [];
         // $tests[] = [
-        //     'roles' => ['provider_administrator'],
+        //     'roles' => ['sponsor_administrator'],
         //     'input' => array_merge($base, []),
         //     'scenario' => 'create', 
         //     'expectException' => false

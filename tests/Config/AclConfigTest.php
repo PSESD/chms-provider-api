@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\Provider\Config;
+namespace CHMSTests\SponsorProvider\Config;
 
 use Laravel\Lumen\Testing\DatabaseTransactions;
-use CHMSTests\Provider\TestCase;
+use CHMSTests\SponsorProvider\TestCase;
 
 class AclConfigTest extends TestCase
 {

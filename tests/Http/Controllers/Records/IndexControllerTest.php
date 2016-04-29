@@ -1,5 +1,5 @@
 <?php
-namespace CHMSTests\Provider\Http\Controllers\Records;
+namespace CHMSTests\SponsorProvider\Http\Controllers\Records;
 
 use CHMSTests\Common\Http\Controllers\Base\IndexControllerTest as BaseIndexControllerTest;
 use CHMSTests\Common\Http\Controllers\Base\IndexActions\GetIndexTrait;

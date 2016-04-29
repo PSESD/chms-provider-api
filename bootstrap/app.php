@@ -14,7 +14,7 @@ try {
 }
 
 // Create the application
-$app = new CHMS\Provider\Application(
+$app = new CHMS\SponsorProvider\Application(
     realpath(__DIR__.'/../')
 );
 //
@@ -25,8 +25,8 @@ $app = new CHMS\Provider\Application(
 // });
 
 
-$app->register(CHMS\Provider\Providers\AppServiceProvider::class);
+$app->register(CHMS\SponsorProvider\Providers\AppServiceProvider::class);
 if (PHP_SAPI === 'cli') {
-    $app->register(CHMS\Provider\Providers\ConsoleServiceProvider::class);
+    $app->register(CHMS\SponsorProvider\Providers\ConsoleServiceProvider::class);
 }
 return $app;

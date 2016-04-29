@@ -1,17 +1,17 @@
 <?php
 /**
- * Clock Hour Management System - Provider
+ * Clock Hour Management System - Sponsor Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\Provider\Console\Commands;
+namespace CHMS\SponsorProvider\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;
-use CHMS\Provider\Models;
-use CHMS\Provider\Repositories\Provider\Contract as ProviderProvider;
-use CHMS\Provider\Repositories\Client\Contract as ClientProvider;
+use CHMS\SponsorProvider\Models;
+use CHMS\SponsorProvider\Repositories\Provider\Contract as ProviderProvider;
+use CHMS\SponsorProvider\Repositories\Client\Contract as ClientProvider;
 use CHMS\Common\Contracts\Acl as AclContract;
 
 class SeedProviders extends Command

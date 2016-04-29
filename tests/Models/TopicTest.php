@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\Provider\Models;
+namespace CHMSTests\SponsorProvider\Models;
 
-use CHMS\Provider\Models\Topic as Model;
-use CHMSTests\Provider\TestCase;
+use CHMS\SponsorProvider\Models\Topic as Model;
+use CHMSTests\SponsorProvider\TestCase;
 
 class TopicTest extends BaseModelTest
 {

@@ -5,7 +5,7 @@
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\Provider\Exceptions;
+namespace CHMS\SponsorProvider\Exceptions;
 
 use CHMS\Common\Exceptions\Handler as BaseHandler;
 

@@ -1,20 +1,20 @@
 <?php
 /**
- * Clock Hour Management System - Provider
+ * Clock Hour Management System - Sponsor Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\Provider\Auth;
+namespace CHMS\SponsorProvider\Auth;
 
 
-use CHMS\Provider\Models\Role as RoleModel;
-use CHMS\Provider\Models\User as UserModel;
-use CHMS\Provider\Models\Client as ClientModel;
+use CHMS\SponsorProvider\Models\Role as RoleModel;
+use CHMS\SponsorProvider\Models\User as UserModel;
+use CHMS\SponsorProvider\Models\Client as ClientModel;
 use Illuminate\Database\Eloquent\Model;
 use CHMS\Common\Auth\Acl as BaseAcl;
 use CHMS\Common\Auth\Contexts\Guest as GuestContext;
-use CHMS\Provider\Auth\Contexts\User as UserContext;
+use CHMS\SponsorProvider\Auth\Contexts\User as UserContext;
 
 class Acl extends BaseAcl
 {

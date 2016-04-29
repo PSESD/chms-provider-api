@@ -1,11 +1,11 @@
 <?php
 /**
- * Clock Hour Management System - Provider
+ * Clock Hour Management System - Sponsor Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\Provider\Models;
+namespace CHMS\SponsorProvider\Models;
 
 class ClassRecord extends BaseModel
 {
@@ -13,7 +13,7 @@ class ClassRecord extends BaseModel
      * @inheritdoc
      */
     protected $fillable = [
-        'provider_id',
+        'sponsor_id',
         'evaluation_id',
         'title',
         'instructional_hours', 

@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\Provider\Http\Input\Filters;
+namespace CHMSTests\SponsorProvider\Http\Input\Filters;
 
-use CHMS\Provider\Http\Input\Filters\Location as Filter;
-use CHMS\Provider\Models\Location as Model;
+use CHMS\SponsorProvider\Http\Input\Filters\Location as Filter;
+use CHMS\SponsorProvider\Models\Location as Model;
 use CHMS\Common\Exceptions\InvalidInputException;
 use CHMSTests\Common\Stubs\GenericModel;
 
@@ -24,7 +24,7 @@ class LocationTest extends FilterTest
         $base = factory(GenericModel::class, 'Location')->make()->toArray();
         $tests = [];
         // $tests[] = [
-        //     'roles' => ['provider_administrator'],
+        //     'roles' => ['sponsor_administrator'],
         //     'input' => array_merge($base, []),
         //     'scenario' => 'create', 
         //     'expectException' => false

@@ -1,11 +1,11 @@
 <?php
 /**
- * Clock Hour Management System - Provider
+ * Clock Hour Management System - Sponsor Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\Provider\Providers;
+namespace CHMS\SponsorProvider\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -26,9 +26,9 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $localModels = AppServiceProvider::getObjectModelNames();
         foreach ($localModels as $model) {
-            $modelClass = 'CHMS\Provider\Models\\' . $model;
-            $contractClass = 'CHMS\Provider\Repositories\\' . $model . '\Contract';
-            $repositoryClass = 'CHMS\Provider\Repositories\\' . $model . '\Provider';
+            $modelClass = 'CHMS\SponsorProvider\Models\\' . $model;
+            $contractClass = 'CHMS\SponsorProvider\Repositories\\' . $model . '\Contract';
+            $repositoryClass = 'CHMS\SponsorProvider\Repositories\\' . $model . '\Provider';
             $this->app->bind($contractClass, function($app) use ($modelClass, $repositoryClass) {
                 return new $repositoryClass( new $modelClass );
             });

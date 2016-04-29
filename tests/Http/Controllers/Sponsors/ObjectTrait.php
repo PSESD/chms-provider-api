@@ -1,7 +1,7 @@
 <?php
-namespace CHMSTests\Provider\Http\Controllers\Providers;
-use CHMS\Provider\Repositories\Provider\Contract;
-use CHMSTests\Provider\ApplicationTestTrait;
+namespace CHMSTests\SponsorProvider\Http\Controllers\Sponsors;
+use CHMS\SponsorProvider\Repositories\Sponsor\Contract;
+use CHMSTests\SponsorProvider\ApplicationTestTrait;
 
 trait ObjectTrait
 {
@@ -17,11 +17,11 @@ trait ObjectTrait
 
     public function getRoute()
     {
-        return '/providers';
+        return '/sponsors';
     }
 
     protected function notExpectedAttributes()
     {
-        return ['provider_api_secret', 'provider_api_url'];
+        return ['api_secret', 'api_url'];
     }
 }

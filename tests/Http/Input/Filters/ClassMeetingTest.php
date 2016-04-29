@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\Provider\Http\Input\Filters;
+namespace CHMSTests\SponsorProvider\Http\Input\Filters;
 
-use CHMS\Provider\Http\Input\Filters\ClassMeeting as Filter;
-use CHMS\Provider\Models\ClassMeeting as Model;
+use CHMS\SponsorProvider\Http\Input\Filters\ClassMeeting as Filter;
+use CHMS\SponsorProvider\Models\ClassMeeting as Model;
 use CHMS\Common\Exceptions\InvalidInputException;
 use CHMSTests\Common\Stubs\GenericModel;
 
@@ -24,7 +24,7 @@ class ClassMeetingTest extends FilterTest
         $base = factory(GenericModel::class, 'ClassMeeting')->make()->toArray();
         $tests = [];
         // $tests[] = [
-        //     'roles' => ['provider_administrator'],
+        //     'roles' => ['sponsor_administrator'],
         //     'input' => array_merge($base, []),
         //     'scenario' => 'create', 
         //     'expectException' => false

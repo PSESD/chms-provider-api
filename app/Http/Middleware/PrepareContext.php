@@ -1,16 +1,16 @@
 <?php
 /**
- * Clock Hour Management System - Provider
+ * Clock Hour Management System - Sponsor Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\Provider\Http\Middleware;
+namespace CHMS\SponsorProvider\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use CHMS\Common\Auth\UniversalGuard;
-use CHMS\Provider\Repositories\Provider\Contract as ProviderContract;
+use CHMS\SponsorProvider\Repositories\Provider\Contract as ProviderContract;
 
 class PrepareContext
 {
@@ -35,6 +35,7 @@ class PrepareContext
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        $context = app('context');
         $providerProvider = app(ProviderContract::class);
         $route = $request->route();
         if (!isset($route[2]['providerId'])) {
@@ -44,7 +45,7 @@ class PrepareContext
         if (empty($provider)) {
             return response('Unknown provider.', 404);
         }
-        $request->setContextItem('provider_id', $provider->id);
+        $context->setProviderId($provider->id);
         return $next($request);
     }
 }

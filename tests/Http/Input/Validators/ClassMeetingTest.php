@@ -1,7 +1,7 @@
 <?php
-namespace CHMSTests\Provider\Http\Input\Validators;
+namespace CHMSTests\SponsorProvider\Http\Input\Validators;
 
-use CHMS\Provider\Http\Input\Validators\ClassMeeting as Validator;
+use CHMS\SponsorProvider\Http\Input\Validators\ClassMeeting as Validator;
 
 abstract class ClassMeetingTest extends ValidatorTest
 {

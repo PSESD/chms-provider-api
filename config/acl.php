@@ -1,38 +1,38 @@
 <?php
-use CHMS\Provider\Models\ClassMeeting as ClassMeetingModel;
-use CHMS\Provider\Models\ClassRecord as ClassRecordModel;
-use CHMS\Provider\Models\ClassTopic as ClassTopicModel;
-use CHMS\Provider\Models\ClockHourRecord as ClockHourRecordModel;
-use CHMS\Provider\Models\Evaluation as EvaluationModel;
-use CHMS\Provider\Models\EvaluationQuestion as EvaluationQuestionModel;
-use CHMS\Provider\Models\EvaluationQuestionOption as EvaluationQuestionOptionModel;
-use CHMS\Provider\Models\Location as LocationModel;
-use CHMS\Provider\Models\Organization as OrganizationModel;
-use CHMS\Provider\Models\Role as RoleModel;
-use CHMS\Provider\Models\RoleUser as RoleUserModel;
-use CHMS\Provider\Models\Provider as ProviderModel;
-use CHMS\Provider\Models\Topic as TopicModel;
-use CHMS\Provider\Models\User as UserModel;
+use CHMS\SponsorProvider\Models\ClassMeeting as ClassMeetingModel;
+use CHMS\SponsorProvider\Models\ClassRecord as ClassRecordModel;
+use CHMS\SponsorProvider\Models\ClassTopic as ClassTopicModel;
+use CHMS\SponsorProvider\Models\ClockHourRecord as ClockHourRecordModel;
+use CHMS\SponsorProvider\Models\Evaluation as EvaluationModel;
+use CHMS\SponsorProvider\Models\EvaluationQuestion as EvaluationQuestionModel;
+use CHMS\SponsorProvider\Models\EvaluationQuestionOption as EvaluationQuestionOptionModel;
+use CHMS\SponsorProvider\Models\Location as LocationModel;
+use CHMS\SponsorProvider\Models\Organization as OrganizationModel;
+use CHMS\SponsorProvider\Models\Role as RoleModel;
+use CHMS\SponsorProvider\Models\RoleUser as RoleUserModel;
+use CHMS\SponsorProvider\Models\Sponsor as SponsorModel;
+use CHMS\SponsorProvider\Models\Topic as TopicModel;
+use CHMS\SponsorProvider\Models\User as UserModel;
 
 
 return [
     'roles' => [
         'super_administrator' => ['name' => 'Super Administrator', 'context' => 'hub', 'level' => 10],
         'hub_administrator' => ['name' => 'Hub Administrator', 'context' => 'hub', 'level' => 11],
-        'provider_administrator' => ['name' => 'Provider Administrator', 'context' => 'provider', 'level' => 100],
-        'provider_registrar' => ['name' => 'Provider Registrar', 'context' => 'provider', 'level' => 110],
-        'provider_reviewer' => ['name' => 'Provider Reviewer', 'context' => 'provider', 'level' => 120],
+        'sponsor_administrator' => ['name' => 'Sponsor Administrator', 'context' => 'sponsor', 'level' => 100],
+        'sponsor_registrar' => ['name' => 'Sponsor Registrar', 'context' => 'sponsor', 'level' => 110],
+        'sponsor_reviewer' => ['name' => 'Sponsor Reviewer', 'context' => 'sponsor', 'level' => 120],
         'class_creator' => ['name' => 'Class Creator', 'context' => 'class', 'level' => 300],
         'instructor' => ['name' => 'Instructor', 'context' => 'class', 'level' => 310],
-        'student' => ['name' => 'Student', 'context' => 'hub', 'level' => 1000],
+        'student' => ['name' => 'Student', 'context' => 'sponsor', 'level' => 1000],
 
-        'self' => ['name' => 'Self', 'level' => 2000, 'context' => 'hub', 'virtual' => true], // for accessing your own user record
-        'guest' => ['name' => 'Guest', 'level' => 9999, 'context' => 'hub', 'virtual' => true],
+        'self' => ['name' => 'Self', 'level' => 2000, 'context' => 'sponsor', 'virtual' => true], // for accessing your own user record
+        'guest' => ['name' => 'Guest', 'level' => 9999, 'context' => 'sponsor', 'virtual' => true],
 
         'client_hub' => ['name' => 'Hub Client', 'level' => 0, 'context' => 'client', 'virtual' => true]
     ],
     'globalRules' => [
-        ['allow', 'roles' => 'provider_administrator', 'privileges' => null],
+        ['allow', 'roles' => 'sponsor_administrator', 'privileges' => null],
     ],
     'globalFieldRules' => [
         'id' => [
@@ -55,13 +55,13 @@ return [
             ['allow', 'roles' => null],
             ['deny', 'roles' => 'guest']
         ],
-        'role-provider-admins' => [
-            ['allow', 'roles' => 'provider_administrator']
+        'role-sponsor-admins' => [
+            ['allow', 'roles' => 'sponsor_administrator']
         ],
-        'role-provider-privileged' => [
-            ['allow', 'roles' => 'provider_administrator'],
-            ['allow', 'roles' => 'provider_registrar'],
-            ['allow', 'roles' => 'provider_reviewer'],
+        'role-sponsor-privileged' => [
+            ['allow', 'roles' => 'sponsor_administrator'],
+            ['allow', 'roles' => 'sponsor_registrar'],
+            ['allow', 'roles' => 'sponsor_reviewer'],
             ['allow', 'roles' => 'super_administrator'],
             ['allow', 'roles' => 'hub_administrator'],
         ],
@@ -79,8 +79,8 @@ return [
     'modelRules' => [
         ClassMeetingModel::class => [
             'access' => [
-                'role-provider-privileged' => ['read', 'set'], 
-                'role-class-privileged' => ['read', 'set'], 
+                'role-sponsor-privileged' => ['read', 'set'],
+                'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
                 '*' => true
@@ -88,8 +88,8 @@ return [
         ],
         ClassRecordModel::class => [
             'access' => [
-                'role-provider-privileged' => ['read', 'set'], 
-                'role-class-privileged' => ['read', 'set'], 
+                'role-sponsor-privileged' => ['read', 'set'],
+                'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
                 '*' => true
@@ -97,8 +97,8 @@ return [
         ],
         ClassTopicModel::class => [
             'access' => [
-                'role-provider-privileged' => ['read', 'set'], 
-                'role-class-privileged' => ['read', 'set'], 
+                'role-sponsor-privileged' => ['read', 'set'],
+                'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
                 '*' => true
@@ -106,8 +106,8 @@ return [
         ],
         ClockHourRecordModel::class => [
             'access' => [
-                'role-provider-privileged' => ['read', 'set'], 
-                'role-class-privileged' => ['read', 'set'], 
+                'role-sponsor-privileged' => ['read', 'set'],
+                'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
                 '*' => true
@@ -116,7 +116,7 @@ return [
         EvaluationModel::class => [
             'access' => [
                 'everyone' => ['read'],
-                'role-provider-privileged' => ['read', 'set'],
+                'role-sponsor-privileged' => ['read', 'set'],
             ],
             'fields' => [
                 '*' => true
@@ -125,7 +125,7 @@ return [
         EvaluationQuestionModel::class => [
             'access' => [
                 'everyone' => ['read'],
-                'role-provider-privileged' => ['read', 'set'],
+                'role-sponsor-privileged' => ['read', 'set'],
             ],
             'fields' => [
                 '*' => true
@@ -134,7 +134,7 @@ return [
         EvaluationQuestionOptionModel::class => [
             'access' => [
                 'everyone' => ['read'],
-                'role-provider-privileged' => ['read', 'set'],
+                'role-sponsor-privileged' => ['read', 'set'],
             ],
             'fields' => [
                 '*' => true
@@ -143,8 +143,8 @@ return [
         LocationModel::class => [
             'access' => [
                 'everyone' => ['read'],
-                'role-provider-privileged' => ['read', 'set'], 
-                'role-class-privileged' => ['read', 'set'], 
+                'role-sponsor-privileged' => ['read', 'set'],
+                'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
                 '*' => true
@@ -152,8 +152,8 @@ return [
         ],
         TopicModel::class => [
             'access' => [
-                'role-provider-privileged' => ['read', 'set'], 
-                'role-class-privileged' => ['read', 'set'], 
+                'role-sponsor-privileged' => ['read', 'set'],
+                'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
                 '*' => true
@@ -169,8 +169,8 @@ return [
         ],
         UserModel::class => [
             'access' => [
-                'role-provider-privileged' => ['read', 'set'], 
-                'role-class-privileged' => ['read', 'set'], 
+                'role-sponsor-privileged' => ['read', 'set'],
+                'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
                 '*' => true
@@ -178,17 +178,17 @@ return [
         ],
         OrganizationModel::class => [
             'access' => [
-                'role-provider-privileged' => ['read', 'set'], 
-                'role-class-privileged' => ['read', 'set'], 
+                'role-sponsor-privileged' => ['read', 'set'],
+                'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
                 '*' => true
             ]
         ],
-        ProviderModel::class => [
+        SponsorModel::class => [
             'access' => [
-                'role-provider-privileged' => ['read', 'set'], 
-                'role-class-privileged' => ['read', 'set'], 
+                'role-sponsor-privileged' => ['read', 'set'],
+                'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
                 '*' => true
@@ -197,12 +197,12 @@ return [
     ],
     'routeRules' => [
 
-        'getProviders' => ['everyone'],
-        'postProviders' => ['everyone'],
-        'headProviderObject' => ['everyone'],
-        'getProviderObject' => ['everyone'],
-        'patchProviderObject' => ['everyone'],
-        'deleteProviderObject' => ['everyone'],
+        'getSponsors' => ['everyone'],
+        'postSponsors' => ['everyone'],
+        'headSponsorObject' => ['everyone'],
+        'getSponsorObject' => ['everyone'],
+        'patchSponsorObject' => ['everyone'],
+        'deleteSponsorObject' => ['everyone'],
 
         'getClasses' => ['everyone'],
         'postClasses' => ['everyone'],
@@ -218,7 +218,7 @@ return [
         'patchMeetingObject' => ['everyone'],
         'deleteMeetingObject' => ['everyone'],
 
-        
+
         'getClassTopics' => ['everyone'],
         'postClassTopics' => ['everyone'],
         'headClassTopic' => ['everyone'],
@@ -233,7 +233,7 @@ return [
         'headRecordObject' => ['everyone'],
         'getRecordObject' => ['everyone'],
         'deleteRecordObject' => ['everyone'],
-        
+
         'getClassInstructors' => ['everyone'],
         'postClassInstructors' => ['everyone'],
         'headClassInstructor' => ['everyone'],
@@ -243,7 +243,7 @@ return [
 
         'getEvaluationResponses' => ['everyone'],
         'postEvaluationResponse' => ['everyone'],
-        
+
         'getEvaluations' => ['everyone'],
         'postEvaluations' => ['everyone'],
         'headEvaluationObject' => ['everyone'],
@@ -275,8 +275,6 @@ return [
         'getTopicObject' => ['everyone'],
         'patchTopicObject' => ['everyone'],
         'deleteTopicObject' => ['everyone'],
-
-
     ],
 ];
 ?>

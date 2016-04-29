@@ -1,5 +1,5 @@
 <?php
-namespace CHMSTests\Provider;
+namespace CHMSTests\SponsorProvider;
 
 class TestCase extends \Laravel\Lumen\Testing\TestCase
 {

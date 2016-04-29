@@ -142,11 +142,36 @@ class Initial extends Migration
             $table->foreign('updated_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
         });
 
+        Schema::create('locations', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->uuid('id')->primary()->collation('ascii_bin');
+            $table->uuid('sponsor_id')->collation('ascii_bin');
+            $table->string('name');
+            $table->string('address_1')->nullable();
+            $table->string('address_2')->nullable();
+            $table->string('city', 100)->nullable();
+            $table->string('subnational_division', 10)->nullable();
+            $table->string('postal_code', 20)->nullable();
+            $table->string('country', 100)->nullable();
+            $table->string('phone_number', 40)->nullable();
+            $table->string('fax_number', 40)->nullable();
+
+            $table->dateTime('updated_at')->nullable();
+            $table->uuid('updated_by')->nullable()->collation('ascii_bin');
+            $table->dateTime('created_at')->nullable();
+            $table->uuid('created_by')->nullable()->collation('ascii_bin');
+
+            $table->foreign('id')->references('id')->on('registry')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('created_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
+            $table->foreign('updated_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
+        });
         Schema::create('class_records', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary()->collation('ascii_bin');
             $table->uuid('sponsor_id')->collation('ascii_bin');
             $table->uuid('evaluation_id')->collation('ascii_bin')->nullable();
+            $table->uuid('location_id')->collation('ascii_bin')->nullable();
             $table->string('title');
             $table->decimal('instructional_hours');
             $table->integer('expected_participants');
@@ -176,35 +201,12 @@ class Initial extends Migration
             $table->foreign('id')->references('id')->on('registry')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('evaluation_id')->references('id')->on('evaluations')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('location_id')->references('id')->on('locations')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('created_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
             $table->foreign('updated_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
             $table->foreign('deleted_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
         });
 
-        Schema::create('locations', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->uuid('id')->primary()->collation('ascii_bin');
-            $table->uuid('sponsor_id')->collation('ascii_bin');
-            $table->string('name');
-            $table->string('address_1')->nullable();
-            $table->string('address_2')->nullable();
-            $table->string('city', 100)->nullable();
-            $table->string('subnational_division', 10)->nullable();
-            $table->string('postal_code', 20)->nullable();
-            $table->string('country', 100)->nullable();
-            $table->string('phone_number', 40)->nullable();
-            $table->string('fax_number', 40)->nullable();
-
-            $table->dateTime('updated_at')->nullable();
-            $table->uuid('updated_by')->nullable()->collation('ascii_bin');
-            $table->dateTime('created_at')->nullable();
-            $table->uuid('created_by')->nullable()->collation('ascii_bin');
-
-            $table->foreign('id')->references('id')->on('class_records')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete('CASCADE')->onUpdate('CASCADE');
-            $table->foreign('created_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
-            $table->foreign('updated_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
-        });
 
         Schema::create('class_meetings', function (Blueprint $table) {
             $table->engine = 'InnoDB';
@@ -294,8 +296,8 @@ class Initial extends Migration
             'class_topics',
             'topics',
             'class_meetings',
-            'locations',
             'class_records',
+            'locations',
             'evaluation_question_options',
             'evaluation_questions',
             'evaluations',

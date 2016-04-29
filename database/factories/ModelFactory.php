@@ -99,7 +99,8 @@ $factory->define(Models\Location::class, function ($faker) {
 $factory->define(Models\ClassMeeting::class, function ($faker) {
     $base = factory(GenericModel::class, 'ClassMeeting')->make()->toArray();
     return array_merge($base, [
-       'class_record_id' => factory(Models\ClassRecord::class)->create()->id 
+       'class_record_id' => factory(Models\ClassRecord::class)->create()->id,
+       'location_id' => factory(Models\Location::class)->create()->id 
     ]);
 });
 

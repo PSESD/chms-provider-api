@@ -22,6 +22,6 @@ test:
 checkout:
   post:
     - php -v
-    - mysql -e 'create database chmsProviderTest;'
+    - mysql -e 'create database chmsSponsorTest;'
     - sudo composer self-update
     - composer install --no-interaction

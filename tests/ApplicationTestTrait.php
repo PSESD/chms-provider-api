@@ -29,6 +29,10 @@ trait ApplicationTestTrait
 
     protected function refresh()
     {
+        static::$sponsor = null;
+        static::$superAdminUser = null;
+        static::$studentUser = null;
+        static::$sponsorAdminUser = null;
         $this->refreshApplication();
         Cache::flush();
     }

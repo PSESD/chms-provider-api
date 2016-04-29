@@ -15,6 +15,7 @@ class ClassRecord extends BaseModel
     protected $fillable = [
         'sponsor_id',
         'evaluation_id',
+        'location_id',
         'title',
         'instructional_hours', 
         'expected_participants',

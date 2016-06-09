@@ -1,21 +1,21 @@
 <?php
-namespace CHMSTests\SponsorProvider;
+namespace CHMSTests\ProviderHub;
 
 use Cache;
-use CHMS\SponsorProvider\Repositories\User\Contract as UserProvider;
-use CHMS\SponsorProvider\Repositories\Client\Contract as ClientProvider;
-use CHMS\SponsorProvider\Repositories\Role\Contract as RoleProvider;
-use CHMS\SponsorProvider\Repositories\Sponsor\Contract as SponsorProvider;
+use CHMS\ProviderHub\Repositories\User\Contract as UserProvider;
+use CHMS\ProviderHub\Repositories\Client\Contract as ClientProvider;
+use CHMS\ProviderHub\Repositories\Role\Contract as RoleProvider;
+use CHMS\ProviderHub\Repositories\Provider\Contract as ProviderProvider;
 use CHMS\Common\Contracts\Acl as AclContract;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use Illuminate\Http\Request;
 
 trait ApplicationTestTrait
 {
-    static $sponsorAdminUser;
+    static $providerAdminUser;
     static $studentUser;
     static $superAdminUser;
-    static $sponsor;
+    static $provider;
 
     /**
      * Creates the application.
@@ -29,10 +29,10 @@ trait ApplicationTestTrait
 
     protected function refresh()
     {
-        static::$sponsor = null;
+        static::$provider = null;
         static::$superAdminUser = null;
         static::$studentUser = null;
-        static::$sponsorAdminUser = null;
+        static::$providerAdminUser = null;
         $this->refreshApplication();
         Cache::flush();
     }
@@ -56,23 +56,23 @@ trait ApplicationTestTrait
         return $userProvider->find(['id' => static::$studentUser]);
     }
 
-    protected function getSponsorAdmin()
+    protected function getProviderAdmin()
     {
         $this->setupUsers();
         $userProvider = app(UserProvider::class);
-        return $userProvider->find(['id' => static::$sponsorAdminUser]);
+        return $userProvider->find(['id' => static::$providerAdminUser]);
     }
 
     protected function setupUsers()
     {
         $this->setupRoles();
-        $sponsorProvider = app(SponsorProvider::class);
+        $providerProvider = app(ProviderProvider::class);
         $userProvider = app(UserProvider::class);
         $roleProvider = app(RoleProvider::class);
 
-        $mainSponsor = $this->getSponsor();
+        $mainProvider = $this->getProvider();
 
-        $userRoleAttributes = ['sponsor_id' => $mainSponsor->id];
+        $userRoleAttributes = ['provider_id' => $mainProvider->id];
         
         $admin = null;
         if (!empty(static::$superAdminUser)) {
@@ -98,16 +98,16 @@ trait ApplicationTestTrait
         }
         static::$studentUser = $student->id;
 
-        $sponsorAdmin = null;
-        if (!empty(static::$sponsorAdminUser)) {
-            $sponsorAdmin = $userProvider->find(['id' => static::$sponsorAdminUser]);
+        $providerAdmin = null;
+        if (!empty(static::$providerAdminUser)) {
+            $providerAdmin = $userProvider->find(['id' => static::$providerAdminUser]);
         }
-        if (empty($sponsorAdmin)) {
-            $sponsorAdmin = $userProvider->create([
+        if (empty($providerAdmin)) {
+            $providerAdmin = $userProvider->create([
             ]);
-            $sponsorAdmin->roles()->save($roleProvider->getRoleBySystemId('sponsor_administrator'), $userRoleAttributes);
+            $providerAdmin->roles()->save($roleProvider->getRoleBySystemId('provider_administrator'), $userRoleAttributes);
         }
-        static::$sponsorAdminUser = $sponsorAdmin->id;
+        static::$providerAdminUser = $providerAdmin->id;
 
     }
 
@@ -139,25 +139,25 @@ trait ApplicationTestTrait
         $acl = app(AclContract::class);
         $acl->setupRoles();
     }
-    protected function getSponsor()
+    protected function getProvider()
     {
-        if (!empty(static::$sponsor)) {
-            return static::$sponsor;
+        if (!empty(static::$provider)) {
+            return static::$provider;
         }
-        $sponsorProvider = app(SponsorProvider::class);
-        $sponsorAttributes = ['name' => 'Main Provider', 'api_secret' => 'foobar', 'slug' => 'foo'];
-        $mainSponsor = $sponsorProvider->find($sponsorAttributes);
-        if (empty($mainSponsor)) {
-            $mainSponsor = $sponsorProvider->create($sponsorAttributes);
+        $providerProvider = app(ProviderProvider::class);
+        $providerAttributes = ['name' => 'Main Provider', 'api_secret' => 'foobar', 'slug' => 'foo'];
+        $mainProvider = $providerProvider->find($providerAttributes);
+        if (empty($mainProvider)) {
+            $mainProvider = $providerProvider->create($providerAttributes);
         }
-        static::$sponsor = $mainSponsor;
-        return $mainSponsor;
+        static::$provider = $mainProvider;
+        return $mainProvider;
     }
-    protected function getSponsorRoute($url = null)
+    protected function getProviderRoute($url = null)
     {
         $route = [];
-        $route[] = 'sponsors';
-        $route[] = $this->getSponsor()->slug;
+        $route[] = 'providers';
+        $route[] = $this->getProvider()->slug;
         if (!is_null($url)) {
             $route[] = $url;
         }

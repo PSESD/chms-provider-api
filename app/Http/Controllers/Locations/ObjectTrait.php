@@ -1,14 +1,14 @@
 <?php
 /**
- * Clock Hour Management System - Sponsor Provider
+ * Clock Hour Management System - Provider Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\SponsorProvider\Http\Controllers\Locations;
+namespace CHMS\ProviderHub\Http\Controllers\Locations;
 
-use CHMS\SponsorProvider\Repositories\Location\Contract;
-use CHMS\SponsorProvider\Http\Transformers\Location as Transformer;
+use CHMS\ProviderHub\Repositories\Location\Contract;
+use CHMS\ProviderHub\Http\Transformers\Location as Transformer;
 
 trait ObjectTrait
 {

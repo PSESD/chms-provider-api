@@ -1,22 +1,22 @@
 <?php
 /**
- * Clock Hour Management System - Sponsor Provider
+ * Clock Hour Management System - Provider Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\SponsorProvider\Providers;
+namespace CHMS\ProviderHub\Providers;
 
 use Auth;
 use Illuminate\Support\Str;
-use CHMS\SponsorProvider\Auth\Context;
-use CHMS\SponsorProvider\Models\User;
-use CHMS\SponsorProvider\Auth\ClientUserProvider;
+use CHMS\ProviderHub\Auth\Context;
+use CHMS\ProviderHub\Models\User;
+use CHMS\ProviderHub\Auth\ClientUserProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
-use CHMS\SponsorProvider\Repositories\User\Contract as UserProvider;
-use CHMS\SponsorProvider\Auth\Acl;
-use CHMS\SponsorProvider\Auth\ProxyAuthorizer;
+use CHMS\ProviderHub\Repositories\User\Contract as UserProvider;
+use CHMS\ProviderHub\Auth\Acl;
+use CHMS\ProviderHub\Auth\ProxyAuthorizer;
 use CHMS\Common\Auth\OAuthGuard;
 use CHMS\Common\Contracts\Acl as AclContract;
 use CHMS\Common\Contracts\InputGate as InputGateContract;
@@ -73,14 +73,14 @@ class AuthServiceProvider extends ServiceProvider
             $gate = new InputGate($app);
 
             foreach (AppServiceProvider::getObjectModelNames() as $model) {
-                $modelClass = 'CHMS\SponsorProvider\Models\\' . $model;
-                $filterClass = 'CHMS\SponsorProvider\Http\Input\Filters\\' . $model;
+                $modelClass = 'CHMS\ProviderHub\Models\\' . $model;
+                $filterClass = 'CHMS\ProviderHub\Http\Input\Filters\\' . $model;
                 $gate->filter($modelClass, $filterClass);
             }
 
             foreach (AppServiceProvider::getObjectModelNames() as $model) {
-                $modelClass = 'CHMS\SponsorProvider\Models\\' . $model;
-                $validatorClass = 'CHMS\SponsorProvider\Http\Input\Validators\\' . $model;
+                $modelClass = 'CHMS\ProviderHub\Models\\' . $model;
+                $validatorClass = 'CHMS\ProviderHub\Http\Input\Validators\\' . $model;
                 $gate->validator($modelClass, $validatorClass);
             }
 

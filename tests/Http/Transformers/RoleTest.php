@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\SponsorProvider\Http\Transformers;
+namespace CHMSTests\ProviderHub\Http\Transformers;
 
-use CHMS\SponsorProvider\Http\Transformers\Role as Transformer;
-use CHMS\SponsorProvider\Models\Role as Model;
+use CHMS\ProviderHub\Http\Transformers\Role as Transformer;
+use CHMS\ProviderHub\Models\Role as Model;
 
 class RoleTest extends TransformerTest
 {

@@ -1,17 +1,17 @@
 <?php
 /**
- * Clock Hour Management System - Sponsor Provider
+ * Clock Hour Management System - Provider Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\SponsorProvider\Providers;
+namespace CHMS\ProviderHub\Providers;
 
 use Laravel\Lumen\Providers\EventServiceProvider as ServiceProvider;
-use CHMS\SponsorProvider\Http\Morphers\AddObjectMeta;
+use CHMS\ProviderHub\Http\Morphers\AddObjectMeta;
 use Illuminate\Database\Eloquent\Model;
-use CHMS\SponsorProvider\Models\Role as RoleModel;
-use CHMS\SponsorProvider\Repositories\Role\Contract as RoleProvider;
+use CHMS\ProviderHub\Models\Role as RoleModel;
+use CHMS\ProviderHub\Repositories\Role\Contract as RoleProvider;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -21,8 +21,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'CHMS\SponsorProvider\Events\SomeEvent' => [
-            \CHMS\SponsorProvider\Listeners\EventListener::class,
+        'CHMS\ProviderHub\Events\SomeEvent' => [
+            \CHMS\ProviderHub\Listeners\EventListener::class,
         ]
     ];
 

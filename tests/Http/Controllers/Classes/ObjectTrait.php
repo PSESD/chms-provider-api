@@ -1,7 +1,7 @@
 <?php
-namespace CHMSTests\SponsorProvider\Http\Controllers\Classes;
-use CHMS\SponsorProvider\Repositories\ClassRecord\Contract;
-use CHMSTests\SponsorProvider\ApplicationTestTrait;
+namespace CHMSTests\ProviderHub\Http\Controllers\Classes;
+use CHMS\ProviderHub\Repositories\ClassRecord\Contract;
+use CHMSTests\ProviderHub\ApplicationTestTrait;
 
 trait ObjectTrait
 {
@@ -18,7 +18,7 @@ trait ObjectTrait
 
     public function getRoute()
     {
-        return $this->getSponsorRoute('classes');
+        return $this->getProviderRoute('classes');
     }
 
     protected function notExpectedAttributes()

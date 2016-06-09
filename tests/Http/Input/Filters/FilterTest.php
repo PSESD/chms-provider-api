@@ -1,7 +1,7 @@
 <?php
-namespace CHMSTests\SponsorProvider\Http\Input\Filters;
+namespace CHMSTests\ProviderHub\Http\Input\Filters;
 
-use CHMSTests\SponsorProvider\TestCase;
+use CHMSTests\ProviderHub\TestCase;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use CHMS\Common\Contracts\Acl as AclContract;
 use CHMSTests\Common\Stubs\GenericModel;

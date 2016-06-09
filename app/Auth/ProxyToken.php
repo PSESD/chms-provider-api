@@ -1,13 +1,13 @@
 <?php
 /**
- * Clock Hour Management System - Sponsor Provider
+ * Clock Hour Management System - Provider Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\SponsorProvider\Auth;
-use CHMS\SponsorProvider\Models\User;
-use CHMS\SponsorProvider\Models\Client;
+namespace CHMS\ProviderHub\Auth;
+use CHMS\ProviderHub\Models\User;
+use CHMS\ProviderHub\Models\Client;
 
 class ProxyToken
 {

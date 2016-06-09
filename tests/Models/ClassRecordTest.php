@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\SponsorProvider\Models;
+namespace CHMSTests\ProviderHub\Models;
 
-use CHMS\SponsorProvider\Models\ClassRecord as Model;
-use CHMSTests\SponsorProvider\TestCase;
+use CHMS\ProviderHub\Models\ClassRecord as Model;
+use CHMSTests\ProviderHub\TestCase;
 
 class ClassRecordTest extends BaseModelTest
 {

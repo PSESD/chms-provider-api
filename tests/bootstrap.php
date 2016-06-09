@@ -4,7 +4,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 putenv('APP_ENV=testing');
 if (getenv('TEST_MYSQL') === 'true') {
     putenv('DB_CONNECTION=mysql');
-    putenv('DB_DATABASE=chmsSponsorTest');
+    putenv('DB_DATABASE=chmsProviderTest');
     $connection = new PDO('mysql:host=' . env('DB_HOST'), env('DB_USERNAME'), env('DB_PASSWORD'));
     $connection->query("DROP DATABASE IF EXISTS ".env('DB_DATABASE'));
     $connection->query("CREATE DATABASE IF NOT EXISTS ". env('DB_DATABASE'));

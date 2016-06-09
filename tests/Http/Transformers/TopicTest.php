@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\SponsorProvider\Http\Transformers;
+namespace CHMSTests\ProviderHub\Http\Transformers;
 
-use CHMS\SponsorProvider\Http\Transformers\Topic as Transformer;
-use CHMS\SponsorProvider\Models\Topic as Model;
+use CHMS\ProviderHub\Http\Transformers\Topic as Transformer;
+use CHMS\ProviderHub\Models\Topic as Model;
 
 class TopicTest extends TransformerTest
 {

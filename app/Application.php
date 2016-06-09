@@ -1,14 +1,14 @@
 <?php
 /**
- * Clock Hour Management System - Sponsor Provider
+ * Clock Hour Management System - Provider Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\SponsorProvider;
+namespace CHMS\ProviderHub;
 
 use CHMS\Common\Application as BaseApplication;
-use CHMS\SponsorProvider\Http\Request;
+use CHMS\ProviderHub\Http\Request;
 
 class Application extends BaseApplication
 {
@@ -19,7 +19,7 @@ class Application extends BaseApplication
      */
     public function applicationVersion()
     {
-        return 'Clock Hour Management System - Sponsor Provider v1';
+        return 'Clock Hour Management System - Provider Provider v1';
     }
 
 

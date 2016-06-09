@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\SponsorProvider\Http\Input\Filters;
+namespace CHMSTests\ProviderHub\Http\Input\Filters;
 
-use CHMS\SponsorProvider\Http\Input\Filters\Topic as Filter;
-use CHMS\SponsorProvider\Models\Topic as Model;
+use CHMS\ProviderHub\Http\Input\Filters\Topic as Filter;
+use CHMS\ProviderHub\Models\Topic as Model;
 use CHMS\Common\Exceptions\InvalidInputException;
 use CHMSTests\Common\Stubs\GenericModel;
 
@@ -23,7 +23,7 @@ class TopicTest extends FilterTest
         $faker = \Faker\Factory::create();
         $base = factory(GenericModel::class, 'Topic')->make()->toArray();
         $tests[] = [
-            'roles' => ['sponsor_administrator'],
+            'roles' => ['provider_administrator'],
             'input' => array_merge($base, []),
             'scenario' => 'create', 
             'expectException' => false

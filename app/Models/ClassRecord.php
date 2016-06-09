@@ -1,11 +1,11 @@
 <?php
 /**
- * Clock Hour Management System - Sponsor Provider
+ * Clock Hour Management System - Provider Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\SponsorProvider\Models;
+namespace CHMS\ProviderHub\Models;
 
 class ClassRecord extends BaseModel
 {
@@ -13,14 +13,14 @@ class ClassRecord extends BaseModel
      * @inheritdoc
      */
     protected $fillable = [
-        'sponsor_id',
+        'provider_id',
         'evaluation_id',
         'location_id',
         'title',
         'instructional_hours', 
         'expected_participants',
         'has_college_credit',
-        'college_credit_sponsor',
+        'college_credit_provider',
         'list_publicly',
         'online_class',
         'online_start_date',
@@ -47,7 +47,7 @@ class ClassRecord extends BaseModel
             [['title'], ['string', 'max:255']],
             [['instructional_hours', 'expected_participants'], ['numeric']],
             [['has_college_credit', 'list_publicly', 'online_class'], ['boolean']],
-            [['college_credit_sponsor'], ['string', 'max:255']],
+            [['college_credit_provider'], ['string', 'max:255']],
             [['registration_url'], ['url', 'max:255']],
             [['online_start_date', 'online_end_date', 'submitted_at', 'verified_at', 'committee_emailed_at', 'committee_approved_at', 'approved_at'], ['date']]
         ];

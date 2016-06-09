@@ -1,7 +1,7 @@
 <?php
-namespace CHMSTests\SponsorProvider\Http\Controllers\Roles;
-use CHMS\SponsorProvider\Repositories\Role\Contract;
-use CHMSTests\SponsorProvider\ApplicationTestTrait;
+namespace CHMSTests\ProviderHub\Http\Controllers\Roles;
+use CHMS\ProviderHub\Repositories\Role\Contract;
+use CHMSTests\ProviderHub\ApplicationTestTrait;
 
 trait ObjectTrait
 {
@@ -17,6 +17,6 @@ trait ObjectTrait
 
     public function getRoute()
     {
-        return $this->getSponsorRoute('roles');
+        return $this->getProviderRoute('roles');
     }
 }

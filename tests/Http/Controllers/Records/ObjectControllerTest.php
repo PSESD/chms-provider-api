@@ -1,5 +1,5 @@
 <?php
-namespace CHMSTests\SponsorProvider\Http\Controllers\Records;
+namespace CHMSTests\ProviderHub\Http\Controllers\Records;
 
 use CHMSTests\Common\Http\Controllers\Base\ObjectControllerTest as BaseObjectControllerTest;
 use CHMSTests\Common\Http\Controllers\Base\ObjectActions\GetObjectTrait;

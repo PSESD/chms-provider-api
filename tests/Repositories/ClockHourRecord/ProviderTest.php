@@ -1,9 +1,9 @@
 <?php
-namespace CHMSTests\SponsorProvider\Repositories\ClockHourRecord;
+namespace CHMSTests\ProviderHub\Repositories\ClockHourRecord;
 
-use CHMSTests\SponsorProvider\Repositories\BaseRepositoryTest;
-use CHMS\SponsorProvider\Repositories\ClockHourRecord\Provider;
-use CHMS\SponsorProvider\Repositories\ClockHourRecord\Contract;
+use CHMSTests\ProviderHub\Repositories\BaseRepositoryTest;
+use CHMS\ProviderHub\Repositories\ClockHourRecord\Provider;
+use CHMS\ProviderHub\Repositories\ClockHourRecord\Contract;
 
 class ProviderTest extends BaseRepositoryTest
 {

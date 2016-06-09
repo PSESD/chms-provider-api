@@ -1,13 +1,13 @@
 <?php
 /**
- * Clock Hour Management System - Sponsor Provider
+ * Clock Hour Management System - Provider Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\SponsorProvider\Listeners;
+namespace CHMS\ProviderHub\Listeners;
 
-use CHMS\SponsorProvider\Events\ExampleEvent;
+use CHMS\ProviderHub\Events\ExampleEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 

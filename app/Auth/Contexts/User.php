@@ -1,19 +1,19 @@
 <?php
 /**
- * Clock Hour Management System - Sponsor Provider
+ * Clock Hour Management System - Provider Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\SponsorProvider\Auth\Contexts;
+namespace CHMS\ProviderHub\Auth\Contexts;
 
 use DB;
 use Illuminate\Database\Query\Builder;
 use CHMS\Common\Auth\RoleBucket;
 use CHMS\Common\Auth\Contexts\BaseAuthSubject;
-use CHMS\SponsorProvider\Models\RoleUser as RoleUserModel;
-use CHMS\SponsorProvider\Models\Role as RoleModel;
-use CHMS\SponsorProvider\Repositories\Role\Contract as RoleProvider;
+use CHMS\ProviderHub\Models\RoleUser as RoleUserModel;
+use CHMS\ProviderHub\Models\Role as RoleModel;
+use CHMS\ProviderHub\Repositories\Role\Contract as RoleProvider;
 
 class User extends BaseAuthSubject
 {

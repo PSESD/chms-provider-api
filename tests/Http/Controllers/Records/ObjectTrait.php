@@ -1,9 +1,9 @@
 <?php
-namespace CHMSTests\SponsorProvider\Http\Controllers\Records;
+namespace CHMSTests\ProviderHub\Http\Controllers\Records;
 
-use CHMS\SponsorProvider\Http\Controllers\ClockHourRecord\ObjectTrait as BaseObjectTrait;
-use CHMS\SponsorProvider\Repositories\ClockHourRecord\Contract;
-use CHMSTests\SponsorProvider\ApplicationTestTrait;
+use CHMS\ProviderHub\Http\Controllers\ClockHourRecord\ObjectTrait as BaseObjectTrait;
+use CHMS\ProviderHub\Repositories\ClockHourRecord\Contract;
+use CHMSTests\ProviderHub\ApplicationTestTrait;
 
 trait ObjectTrait
 {
@@ -19,7 +19,7 @@ trait ObjectTrait
 
     public function getRoute()
     {
-        return $this->getSponsorRoute('records');
+        return $this->getProviderRoute('records');
     }
 
     protected function notExpectedAttributes()

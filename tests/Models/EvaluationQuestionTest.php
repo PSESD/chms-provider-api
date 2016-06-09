@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\SponsorProvider\Models;
+namespace CHMSTests\ProviderHub\Models;
 
-use CHMS\SponsorProvider\Models\EvaluationQuestion as Model;
-use CHMSTests\SponsorProvider\TestCase;
+use CHMS\ProviderHub\Models\EvaluationQuestion as Model;
+use CHMSTests\ProviderHub\TestCase;
 
 class EvaluationQuestionTest extends BaseModelTest
 {

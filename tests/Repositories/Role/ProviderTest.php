@@ -1,9 +1,9 @@
 <?php
-namespace CHMSTests\SponsorProvider\Repositories\Role;
+namespace CHMSTests\ProviderHub\Repositories\Role;
 
-use CHMSTests\SponsorProvider\Repositories\BaseRepositoryTest;
-use CHMS\SponsorProvider\Repositories\Role\Provider;
-use CHMS\SponsorProvider\Repositories\Role\Contract;
+use CHMSTests\ProviderHub\Repositories\BaseRepositoryTest;
+use CHMS\ProviderHub\Repositories\Role\Provider;
+use CHMS\ProviderHub\Repositories\Role\Contract;
 
 class ProviderTest extends BaseRepositoryTest
 {

@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\SponsorProvider\Models;
+namespace CHMSTests\ProviderHub\Models;
 
-use CHMS\SponsorProvider\Models\RoleUser as Model;
-use CHMSTests\SponsorProvider\TestCase;
+use CHMS\ProviderHub\Models\RoleUser as Model;
+use CHMSTests\ProviderHub\TestCase;
 
 class RoleUserTest extends BaseModelTest
 {

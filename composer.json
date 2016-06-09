@@ -34,7 +34,7 @@
     },
     "autoload": {
         "psr-4": {
-            "CHMS\\SponsorProvider\\": "app/"
+            "CHMS\\ProviderHub\\": "app/"
         },
         "classmap": [
             "database/"
@@ -42,7 +42,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "CHMSTests\\SponsorProvider\\": "tests/"
+            "CHMSTests\\ProviderHub\\": "tests/"
         }
     }
 }

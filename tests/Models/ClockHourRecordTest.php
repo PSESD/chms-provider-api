@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\SponsorProvider\Models;
+namespace CHMSTests\ProviderHub\Models;
 
-use CHMS\SponsorProvider\Models\ClockHourRecord as Model;
-use CHMSTests\SponsorProvider\TestCase;
+use CHMS\ProviderHub\Models\ClockHourRecord as Model;
+use CHMSTests\ProviderHub\TestCase;
 
 class ClockHourRecordTest extends BaseModelTest
 {

@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\SponsorProvider\Http\Transformers;
+namespace CHMSTests\ProviderHub\Http\Transformers;
 
-use CHMS\SponsorProvider\Http\Transformers\Location as Transformer;
-use CHMS\SponsorProvider\Models\Location as Model;
+use CHMS\ProviderHub\Http\Transformers\Location as Transformer;
+use CHMS\ProviderHub\Models\Location as Model;
 
 class LocationTest extends TransformerTest
 {

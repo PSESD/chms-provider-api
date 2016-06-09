@@ -1,13 +1,13 @@
 <?php
 /**
- * Clock Hour Management System - Sponsor Provider
+ * Clock Hour Management System - Provider Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\SponsorProvider\Models\Concerns;
-use CHMS\SponsorProvider\Repositories\Role\Contract as RoleContract;
-use CHMS\SponsorProvider\Models\RoleUser;
+namespace CHMS\ProviderHub\Models\Concerns;
+use CHMS\ProviderHub\Repositories\Role\Contract as RoleContract;
+use CHMS\ProviderHub\Models\RoleUser;
 
 trait EnsureTrait
 {
@@ -31,14 +31,14 @@ trait EnsureTrait
         $where[] = ['user_id', $userId];
         $where[] = ['role_id', $role->id];
         if (!is_null($providerId)) {
-            $where[] = ['sponsor_id', $providerId];
+            $where[] = ['provider_id', $providerId];
         }
         $roleUser = RoleUser::where($where)->first();
         if (empty($roleUser)) {
             $roleUser = new RoleUser;
             $roleUser->user_id = $userId;
             $roleUser->role_id = $role->id;
-            $roleUser->sponsor_id = $providerId;
+            $roleUser->provider_id = $providerId;
             return $roleUser->save();
         }
         return true;

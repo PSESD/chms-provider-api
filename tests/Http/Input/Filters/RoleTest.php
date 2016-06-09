@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\SponsorProvider\Http\Input\Filters;
+namespace CHMSTests\ProviderHub\Http\Input\Filters;
 
-use CHMS\SponsorProvider\Http\Input\Filters\Role as Filter;
-use CHMS\SponsorProvider\Models\Role as Model;
+use CHMS\ProviderHub\Http\Input\Filters\Role as Filter;
+use CHMS\ProviderHub\Models\Role as Model;
 use CHMS\Common\Exceptions\InvalidInputException;
 use CHMSTests\Common\Stubs\GenericModel;
 
@@ -24,7 +24,7 @@ class RoleTest extends FilterTest
         $base = factory(GenericModel::class, 'Role')->make()->toArray();
         $tests = [];
         // $tests[] = [
-        //     'roles' => ['sponsor_administrator'],
+        //     'roles' => ['provider_administrator'],
         //     'input' => array_merge($base, []),
         //     'scenario' => 'create', 
         //     'expectException' => false

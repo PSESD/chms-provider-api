@@ -1,11 +1,11 @@
 <?php
 /**
- * Clock Hour Management System - Sponsor Provider
+ * Clock Hour Management System - Provider Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\SponsorProvider\Providers;
+namespace CHMS\ProviderHub\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -30,7 +30,7 @@ class ConsoleServiceProvider extends ServiceProvider
     {
 		$this->app->singleton(
 		    \Illuminate\Contracts\Console\Kernel::class,
-		    \CHMS\SponsorProvider\Console\Kernel::class
+		    \CHMS\ProviderHub\Console\Kernel::class
 		);
         $this->app->register(\Appzcoder\LumenRoutesList\RoutesCommandServiceProvider::class);
     }

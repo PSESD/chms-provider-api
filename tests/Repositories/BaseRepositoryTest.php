@@ -1,7 +1,7 @@
 <?php
-namespace CHMSTests\SponsorProvider\Repositories;
+namespace CHMSTests\ProviderHub\Repositories;
 
-use CHMSTests\SponsorProvider\TestCase;
+use CHMSTests\ProviderHub\TestCase;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 
 abstract class BaseRepositoryTest extends TestCase

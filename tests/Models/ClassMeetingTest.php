@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\SponsorProvider\Models;
+namespace CHMSTests\ProviderHub\Models;
 
-use CHMS\SponsorProvider\Models\ClassMeeting as Model;
-use CHMSTests\SponsorProvider\TestCase;
+use CHMS\ProviderHub\Models\ClassMeeting as Model;
+use CHMSTests\ProviderHub\TestCase;
 
 class ClassMeetingTest extends BaseModelTest
 {

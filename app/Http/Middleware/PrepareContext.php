@@ -1,16 +1,16 @@
 <?php
 /**
- * Clock Hour Management System - Sponsor Provider
+ * Clock Hour Management System - Provider Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\SponsorProvider\Http\Middleware;
+namespace CHMS\ProviderHub\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Factory as Auth;
 use CHMS\Common\Auth\UniversalGuard;
-use CHMS\SponsorProvider\Repositories\Provider\Contract as ProviderContract;
+use CHMS\ProviderHub\Repositories\Provider\Contract as ProviderContract;
 
 class PrepareContext
 {

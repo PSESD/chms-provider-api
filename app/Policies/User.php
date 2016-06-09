@@ -1,13 +1,13 @@
 <?php
 /**
- * Clock Hour Management System - Sponsor Provider
+ * Clock Hour Management System - Provider Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\SponsorProvider\Policies;
+namespace CHMS\ProviderHub\Policies;
 
-use CHMS\SponsorProvider\Models\User as UserModel;
+use CHMS\ProviderHub\Models\User as UserModel;
 use CHMS\Common\Policies\BaseObject;
 
 class User extends BaseObject

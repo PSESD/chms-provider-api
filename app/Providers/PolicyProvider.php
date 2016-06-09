@@ -1,11 +1,11 @@
 <?php
 /**
- * Clock Hour Management System - Sponsor Provider
+ * Clock Hour Management System - Provider Provider
  *
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\SponsorProvider\Providers;
+namespace CHMS\ProviderHub\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Request;
@@ -18,8 +18,8 @@ class PolicyProvider extends ServiceProvider
     {
         Gate::policy(Request::class, RequestPolicy::class);
         foreach (AppServiceProvider::getObjectModelNames() as $model) {
-            $modelClass = 'CHMS\SponsorProvider\Models\\' . $model;
-            $policyClass = 'CHMS\SponsorProvider\Policies\\' . $model;
+            $modelClass = 'CHMS\ProviderHub\Models\\' . $model;
+            $policyClass = 'CHMS\ProviderHub\Policies\\' . $model;
             Gate::policy($modelClass, $policyClass);
         }
     }

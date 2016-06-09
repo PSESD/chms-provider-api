@@ -1,8 +1,8 @@
 <?php
-namespace CHMSTests\SponsorProvider\Http\Input\Filters;
+namespace CHMSTests\ProviderHub\Http\Input\Filters;
 
-use CHMS\SponsorProvider\Http\Input\Filters\ClassRecord as Filter;
-use CHMS\SponsorProvider\Models\ClassRecord as Model;
+use CHMS\ProviderHub\Http\Input\Filters\ClassRecord as Filter;
+use CHMS\ProviderHub\Models\ClassRecord as Model;
 use CHMS\Common\Exceptions\InvalidInputException;
 use CHMSTests\Common\Stubs\GenericModel;
 
@@ -24,7 +24,7 @@ class ClassRecordTest extends FilterTest
         $base = factory(GenericModel::class, 'ClassRecord')->make()->toArray();
         $tests = [];
         // $tests[] = [
-        //     'roles' => ['sponsor_administrator'],
+        //     'roles' => ['provider_administrator'],
         //     'input' => array_merge($base, []),
         //     'scenario' => 'create', 
         //     'expectException' => false

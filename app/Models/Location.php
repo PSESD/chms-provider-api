@@ -31,8 +31,8 @@ class Location extends BaseModel
     public function rules()
     {
         return [
-            [['name', 'city', 'subnational_division'], ['required'], 'on' => 'create'],
-            [['name', 'city', 'subnational_division'], ['filled']],
+            [['name'], ['required'], 'on' => 'create'],
+            [['name'], ['filled']],
             [['address_1', 'address_2', 'name'], ['max:255']],
             [['city', 'country'], ['max:100']],
             [['address_1', 'address_2', 'subnational_division', 'name', 'city', 'country'], ['string']],

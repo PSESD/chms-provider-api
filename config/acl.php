@@ -29,7 +29,10 @@ return [
         'self' => ['name' => 'Self', 'level' => 2000, 'context' => 'provider', 'virtual' => true], // for accessing your own user record
         'guest' => ['name' => 'Guest', 'level' => 9999, 'context' => 'provider', 'virtual' => true],
 
-        'client_hub' => ['name' => 'Hub Client', 'level' => 0, 'context' => 'client', 'virtual' => true]
+        'client_central_hub' => ['name' => 'Central Hub Client', 'level' => 0, 'context' => 'client', 'virtual' => true],
+        'client_provider' => ['name' => 'Provider Client', 'level' => 2, 'context' => 'client', 'virtual' => true],
+        'client_provider_hub' => ['name' => 'Provider Hub Client', 'level' => 1, 'context' => 'client', 'virtual' => true],
+        'client_client' => ['name' => 'Client Client', 'level' => 3, 'context' => 'client', 'virtual' => true]
     ],
     'globalRules' => [
         ['allow', 'roles' => 'provider_administrator', 'privileges' => null],
@@ -69,8 +72,8 @@ return [
             ['allow', 'roles' => 'class_creator'],
             ['allow', 'roles' => 'instructor']
         ],
-        'role-client-hub' => [
-            ['allow', 'roles' => 'client_hub']
+        'role-client-central-hub' => [
+            ['allow', 'roles' => 'client_central_hub']
         ],
         'role-self' => [
             ['allow', 'roles' => ['self']]
@@ -189,9 +192,11 @@ return [
             'access' => [
                 'role-provider-privileged' => ['read', 'set'],
                 'role-class-privileged' => ['read', 'set'],
+                'role-client-central-hub' => ['read']
             ],
             'fields' => [
-                '*' => true
+                '*' => true,
+                'api_secret' => []
             ]
         ],
     ],

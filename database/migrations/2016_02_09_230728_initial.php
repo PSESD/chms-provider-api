@@ -27,6 +27,7 @@ class Initial extends Migration
             $table->string('name');
             $table->string('api_secret', 60);
             $table->string('slug', 20)->unique();
+            $table->string('class_number_prefix', 4)->unique();
             $table->dateTime('deleted_at')->nullable();
             $table->uuid('deleted_by')->nullable()->collation('ascii_bin');
             $table->dateTime('updated_at')->nullable();
@@ -51,6 +52,10 @@ class Initial extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary()->collation('ascii_bin');
+            $table->string('name');
+            $table->string('type', 15);
+            $table->text('secret');
+            $table->string('base_url', 255)->nullable();
             $table->dateTime('created_at')->nullable();
             $table->foreign('id')->references('id')->on('registry')->onDelete('CASCADE')->onUpdate('CASCADE');
         });

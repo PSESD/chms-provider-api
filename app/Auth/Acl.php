@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
 use CHMS\Common\Auth\Acl as BaseAcl;
 use CHMS\Common\Auth\Contexts\Guest as GuestContext;
 use CHMS\ProviderHub\Auth\Contexts\User as UserContext;
+use CHMS\Common\Auth\Contexts\Client as ClientContext;
 
 class Acl extends BaseAcl
 {

@@ -26,6 +26,9 @@ $app->addRoute('GET', '/version', function () use ($app) {
     return ['version' => $app->version()];
 });
 
+$app->addRoute('GET', '/handshake', ['uses' => 'CHMS\ProviderHub\Http\Controllers\HandshakeController@get']);
+$app->addRoute('POST', '/handshake', ['uses' => 'CHMS\ProviderHub\Http\Controllers\HandshakeController@post']);
+
 $primaryMiddleware = ['auth:user', 'auth-route']; // ['oauth', 'oauth-user', 'auth:user', 'auth-route'];
 $clientMiddleware = ['auth:client', 'auth-route']; // ['oauth', 'oauth-client', 'auth:client', 'auth-route'];
 $mixMiddleware = ['auth:*', 'auth-route']; // ['oauth', 'auth:*', 'auth-route'];

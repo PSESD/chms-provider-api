@@ -11,10 +11,10 @@ use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;
 use CHMS\ProviderHub\Models;
 use CHMS\ProviderHub\Repositories\User\Contract as UserProvider;
-use CHMS\ProviderHub\Repositories\Client\Contract as ClientProvider;
 use CHMS\ProviderHub\Repositories\Role\Contract as RoleProvider;
 use CHMS\ProviderHub\Repositories\Provider\Contract as ProviderProvider;
 use CHMS\Common\Contracts\Acl as AclContract;
+use CHMS\ProviderHub\Models\Client;
 
 class Setup extends Command
 {
@@ -24,6 +24,17 @@ class Setup extends Command
         ProviderProvider $providerProvider,
         AclContract $acl
     ) {
+        $selfClient = Client::where(['name' => 'Provider Hub'])->first();
+        if (empty($selfClient)) {
+            $selfClient = new Client;
+            $selfClient->name = 'Provider Hub';
+            $selfClient->secret = 'foobar';
+            $selfClient->type = 'provider_hub';
+            $selfClient->save();
+        }
+        \dump(['provider hub', 'client_id' => $selfClient->id, 'client_secret' => 'foobar']);
+
+
         \dump(['role setup', $acl->setupRoles()]);
         $provider = $providerProvider->find(['name' => 'Test Provider', 'slug' => 'test']);
         if (empty($provider)) {
@@ -32,7 +43,7 @@ class Setup extends Command
                 'slug' => 'test'
             ]);
         }
-        \dump(['provider', $provider->slug]);
+        \dump(['provider', 'id' => $provider->id, 'slug' => $provider->slug]);
 
 
     }

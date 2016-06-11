@@ -52,6 +52,9 @@ class AppServiceProvider extends ServiceProvider
         if (!class_exists('Hash')) {
             class_alias('Illuminate\Support\Facades\Hash', 'Hash');
         }
+        if (!class_exists('Crypt')) {
+            class_alias('Illuminate\Support\Facades\Crypt', 'Crypt');
+        }
         if (!class_exists('Request')) {
             class_alias('Illuminate\Support\Facades\Request', 'Request');
         }

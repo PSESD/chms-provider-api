@@ -23,6 +23,10 @@ class Client extends BaseModel implements
      * @inheritdoc
      */
     protected $fillable = [
+        'name',
+        'type',
+        'secret',
+        'base_url'
     ];
 
     /**

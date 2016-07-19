@@ -5,12 +5,13 @@
  * @copyright Copyright (c) 2016 Puget Sound Educational Service District
  * @license   Proprietary
  */
-namespace CHMS\ProviderHub\Http\Controllers\Roles;
+namespace CHMS\ProviderHub\Http\Controllers\Evaluations;
 
-use CHMS\ProviderHub\Repositories\Role\Contract;
-use CHMS\ProviderHub\Http\Transformers\Role as Transformer;
+use CHMS\ProviderHub\Repositories\EvaluationQuestion\Contract;
+use CHMS\ProviderHub\Http\Transformers\EvaluationQuestion as Transformer;
+use Illuminate\Http\Request;
 
-trait ObjectTrait
+trait QuestionObjectTrait
 {
     /**
      * @var Contract
@@ -48,7 +49,18 @@ trait ObjectTrait
      */
     public function getResourceKey()
     {
-        return 'roles';
+        return 'evaluation_questions';
+    }
+
+    protected function prepareContext(Request $request)
+    {
+        $route = $request->route();
+        $context = app('context');
+
+        if (isset($route[2]['evaluationId'])) {
+            $context->setObjectField('evaluation_id', $route[2]['evaluationId']);
+        }
+        return true;
     }
 
     /**
@@ -56,6 +68,6 @@ trait ObjectTrait
      */
     protected function getObjectIdParameter()
     {
-        return 'roleId';
+        return 'questionId';
     }
 }

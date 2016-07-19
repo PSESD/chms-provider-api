@@ -86,7 +86,8 @@ return [
                 'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
-                '*' => true
+                '*' => true,
+                'meta.*' => true
             ]
         ],
         ClassRecordModel::class => [
@@ -95,7 +96,8 @@ return [
                 'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
-                '*' => true
+                '*' => true,
+                'meta.*' => true
             ]
         ],
         ClassTopicModel::class => [
@@ -104,7 +106,8 @@ return [
                 'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
-                '*' => true
+                '*' => true,
+                'meta.*' => true
             ]
         ],
         ClockHourRecordModel::class => [
@@ -113,7 +116,8 @@ return [
                 'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
-                '*' => true
+                '*' => true,
+                'meta.*' => true
             ]
         ],
         EvaluationModel::class => [
@@ -122,7 +126,8 @@ return [
                 'role-provider-privileged' => ['read', 'set'],
             ],
             'fields' => [
-                '*' => true
+                '*' => true,
+                'meta.*' => true
             ]
         ],
         EvaluationQuestionModel::class => [
@@ -131,7 +136,8 @@ return [
                 'role-provider-privileged' => ['read', 'set'],
             ],
             'fields' => [
-                '*' => true
+                '*' => true,
+                'meta.*' => true
             ]
         ],
         EvaluationQuestionOptionModel::class => [
@@ -140,7 +146,8 @@ return [
                 'role-provider-privileged' => ['read', 'set'],
             ],
             'fields' => [
-                '*' => true
+                '*' => true,
+                'meta.*' => true
             ]
         ],
         LocationModel::class => [
@@ -150,7 +157,8 @@ return [
                 'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
-                '*' => true
+                '*' => true,
+                'meta.*' => true
             ]
         ],
         TopicModel::class => [
@@ -159,7 +167,8 @@ return [
                 'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
-                '*' => true
+                '*' => true,
+                'meta.*' => true
             ]
         ],
         RoleModel::class => [
@@ -167,7 +176,8 @@ return [
                 'everyone' => ['read']
             ],
             'fields' => [
-                '*' => true
+                '*' => true,
+                'meta.*' => true
             ]
         ],
         UserModel::class => [
@@ -176,7 +186,8 @@ return [
                 'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
-                '*' => true
+                '*' => true,
+                'meta.*' => true
             ]
         ],
         OrganizationModel::class => [
@@ -185,7 +196,8 @@ return [
                 'role-class-privileged' => ['read', 'set'],
             ],
             'fields' => [
-                '*' => true
+                '*' => true,
+                'meta.*' => true
             ]
         ],
         ProviderModel::class => [
@@ -196,6 +208,7 @@ return [
             ],
             'fields' => [
                 '*' => true,
+                'meta.*' => true,
                 'api_secret' => []
             ]
         ],

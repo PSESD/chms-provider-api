@@ -50,4 +50,12 @@ trait ObjectTrait
     {
         return 'classes';
     }
+
+    /**
+     * @inheritdoc
+     */
+    protected function getObjectIdParameter()
+    {
+        return 'classId';
+    }
 }

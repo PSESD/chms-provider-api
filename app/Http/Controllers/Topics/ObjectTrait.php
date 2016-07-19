@@ -50,4 +50,12 @@ trait ObjectTrait
     {
         return 'topics';
     }
+
+    /**
+     * @inheritdoc
+     */
+    protected function getObjectIdParameter()
+    {
+        return 'topicId';
+    }
 }

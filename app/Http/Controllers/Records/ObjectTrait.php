@@ -50,4 +50,12 @@ trait ObjectTrait
     {
         return 'records';
     }
+
+    /**
+     * @inheritdoc
+     */
+    protected function getObjectIdParameter()
+    {
+        return 'recordId';
+    }
 }

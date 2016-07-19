@@ -9,6 +9,10 @@ namespace CHMS\ProviderHub\Models;
 
 class EvaluationQuestion extends BaseModel
 {
+
+    protected $casts = [
+        'multiple' => 'boolean',
+    ];
     /**
      * @inheritdoc
      */
@@ -16,8 +20,15 @@ class EvaluationQuestion extends BaseModel
         'evaluation_id',
         'question',
         'type',
-        'order'
+        'multiple',
+        'order',
+        'options'
     ];
+
+    public function getVirtualFields()
+    {
+        return ['options'];
+    }
 
     /**
      * @inheritdoc
@@ -25,12 +36,23 @@ class EvaluationQuestion extends BaseModel
     public function rules()
     {
         return [
-            [['evaluation_id', 'question', 'type', 'order'], ['required'], 'on' => 'create'],
-            [['evaluation_id', 'question', 'type', 'order'], ['filled']],
-            [['evaluation_id'], ['exists:evaluations,id']],
+            [['question', 'type', 'order'], ['required'], 'on' => 'create'],
+            [['question', 'type', 'order'], ['filled']],
+            // [['evaluation_id'], ['exists:evaluations,id']],
             [['question'], ['string', 'max:255']],
             [['type'], ['string', 'max:15']],
-            [['order'], ['numeric']]
+            [['order'], ['numeric']],
+            [['multiple'], ['boolean']]
         ];
+    }
+
+    public function setOptions($value)
+    {
+        return true;
+    }
+
+    public function getOptions()
+    {
+        return [];
     }
 }

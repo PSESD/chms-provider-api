@@ -21,8 +21,10 @@ class Meta extends Migration
             $table->dateTime('updated_at')->nullable();
             $table->dateTime('created_at')->nullable();
             $table->unique(['object_id', 'key']);
+            // $table->index(['object_id', 'key', 'value(255)']);
             $table->foreign('object_id')->references('id')->on('registry')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
+        DB::statement('CREATE INDEX full_meta_index ON `meta` (`object_id`, `key`, `value`(255));');
     }
 
     /**
@@ -35,6 +37,9 @@ class Meta extends Migration
         $tables = [
             'meta'
         ];
+        Schema::table('meta', function($table) {
+            $table->dropIndex('full_meta_index');
+        });
         foreach ($tables as $table) {
             if (Schema::hasTable($table)) {
                 Schema::drop($table);

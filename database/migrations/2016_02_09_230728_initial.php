@@ -120,6 +120,7 @@ class Initial extends Migration
             $table->uuid('evaluation_id')->collation('ascii_bin');
             $table->string('question');
             $table->string('type', 15);
+            $table->boolean('multiple')->default(0);
             $table->integer('order')->default(0);
             $table->dateTime('updated_at')->nullable();
             $table->uuid('updated_by')->nullable()->collation('ascii_bin');
@@ -171,12 +172,39 @@ class Initial extends Migration
             $table->foreign('created_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
             $table->foreign('updated_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
         });
+
+        Schema::create('class_number_prefix', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+            $table->uuid('id')->primary()->collation('ascii_bin');
+            $table->uuid('provider_id')->collation('ascii_bin');
+            $table->char('last_letter', 1);
+
+            $table->date('start_date');
+            $table->date('end_date');
+
+            $table->dateTime('deleted_at')->nullable();
+            $table->uuid('deleted_by')->nullable()->collation('ascii_bin');
+            $table->dateTime('updated_at')->nullable();
+            $table->uuid('updated_by')->nullable()->collation('ascii_bin');
+            $table->dateTime('created_at')->nullable();
+            $table->uuid('created_by')->nullable()->collation('ascii_bin');
+            $table->unique(['provider_id', 'last_letter']);
+            $table->foreign('id')->references('id')->on('registry')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('provider_id')->references('id')->on('providers')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('created_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
+            $table->foreign('deleted_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
+            $table->foreign('updated_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
+        });
+
         Schema::create('class_records', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->uuid('id')->primary()->collation('ascii_bin');
             $table->uuid('provider_id')->collation('ascii_bin');
             $table->uuid('evaluation_id')->collation('ascii_bin')->nullable();
             $table->uuid('location_id')->collation('ascii_bin')->nullable();
+            $table->uuid('class_number_prefix_id')->collation('ascii_bin')->nullable();
+            $table->smallInteger('class_number_postfix', false, true)->nullable();
+
             $table->string('title');
             $table->decimal('instructional_hours');
             $table->integer('expected_participants');
@@ -188,6 +216,7 @@ class Initial extends Migration
             $table->date('online_end_date')->nullable();
             $table->string('registration_url')->nullable();
             $table->text('objectives');
+            $table->text('topics');
             $table->text('comments');
 
             $table->dateTime('submitted_at')->nullable();
@@ -203,9 +232,12 @@ class Initial extends Migration
             $table->dateTime('created_at')->nullable();
             $table->uuid('created_by')->nullable()->collation('ascii_bin');
 
+            $table->index(['class_number_prefix_id', 'class_number_postfix']);
+
             $table->foreign('id')->references('id')->on('registry')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('provider_id')->references('id')->on('providers')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('evaluation_id')->references('id')->on('evaluations')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('class_number_prefix_id')->references('id')->on('class_number_prefix')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('CASCADE')->onUpdate('CASCADE');
             $table->foreign('created_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
             $table->foreign('updated_by')->references('id')->on('registry')->onDelete('SET NULL')->onUpdate('CASCADE');
@@ -301,6 +333,7 @@ class Initial extends Migration
             'class_topics',
             'topics',
             'class_meetings',
+            'class_number_prefix',
             'class_records',
             'locations',
             'evaluation_question_options',

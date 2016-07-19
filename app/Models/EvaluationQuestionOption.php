@@ -14,7 +14,8 @@ class EvaluationQuestionOption extends BaseModel
      */
     protected $fillable = [
         'evaluation_question_id',
-        'option_value',
+        'label',
+        'value',
         'order'
     ];
 
@@ -24,10 +25,10 @@ class EvaluationQuestionOption extends BaseModel
     public function rules()
     {
         return [
-            [['evaluation_question_id', 'option_value', 'order'], ['required'], 'on' => 'create'],
-            [['evaluation_question_id', 'option_value', 'order'], ['filled']],
+            [['evaluation_question_id', 'value', 'label', 'order'], ['required'], 'on' => 'create'],
+            [['evaluation_question_id', 'value', 'label', 'order'], ['filled']],
             [['evaluation_question_id'], ['exists:evaluation_questions,id']],
-            [['option_value'], ['string', 'max:255']],
+            [['value', 'label'], ['string', 'max:255']],
             [['order'], ['numeric']]
         ];
     }

@@ -15,6 +15,8 @@ use CHMS\ProviderHub\Models\RoleUser as RoleUserModel;
 use CHMS\ProviderHub\Models\Role as RoleModel;
 use CHMS\ProviderHub\Repositories\Role\Contract as RoleProvider;
 
+
+
 class User extends BaseAuthSubject
 {
     /**
@@ -47,7 +49,7 @@ class User extends BaseAuthSubject
     {
         $query = DB::table('role_users')->select('role_id')->where('user_id', $this->subjectObject->id);
         if (isset($this->modelObject)) {
-            $query->andWhere(function ($query) {
+            $query->where(function ($query) {
                 $query->whereNull('object_id')
                       ->orWhere('object_id', $this->modelObject->id);
             });

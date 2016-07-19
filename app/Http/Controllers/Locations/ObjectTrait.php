@@ -50,4 +50,12 @@ trait ObjectTrait
     {
         return 'locations';
     }
+
+    /**
+     * @inheritdoc
+     */
+    protected function getObjectIdParameter()
+    {
+        return 'locationId';
+    }
 }

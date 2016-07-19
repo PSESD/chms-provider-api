@@ -50,4 +50,12 @@ trait ObjectTrait
     {
         return 'providers';
     }
+
+    /**
+     * @inheritdoc
+     */
+    protected function getObjectIdParameter()
+    {
+        return 'providerId';
+    }
 }

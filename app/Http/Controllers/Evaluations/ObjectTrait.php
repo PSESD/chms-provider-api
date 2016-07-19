@@ -9,6 +9,8 @@ namespace CHMS\ProviderHub\Http\Controllers\Evaluations;
 
 use CHMS\ProviderHub\Repositories\Evaluation\Contract;
 use CHMS\ProviderHub\Http\Transformers\Evaluation as Transformer;
+use Illuminate\Http\Request;
+
 
 trait ObjectTrait
 {
@@ -49,5 +51,13 @@ trait ObjectTrait
     public function getResourceKey()
     {
         return 'evaluations';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function getObjectIdParameter()
+    {
+        return 'evaluationId';
     }
 }
